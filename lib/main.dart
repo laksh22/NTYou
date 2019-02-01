@@ -12,6 +12,12 @@ class MyApp extends StatelessWidget {
       title: 'Osmosis',
       theme: new ThemeData(
         primarySwatch: Colors.blue,
+        primaryColor: Colors.lightBlue[700],
+        accentColor: Colors.lightBlue[700],
+        scaffoldBackgroundColor: Color(0xFFF5F5F5),
+        buttonTheme: new ButtonThemeData(
+          buttonColor: Colors.lightBlue[700],
+        )
       ),
       home: new RootPage(auth: new Auth()),
     );

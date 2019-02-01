@@ -51,7 +51,9 @@ class Home extends StatelessWidget {
                                   padding: const EdgeInsets.all(16.0),
                                   child: new PrimaryButton(
                                     key: null,
-                                    onPressed: null,
+                                    onPressed: () {
+                                      print("This");
+                                    },
                                     text: 'Classes',
                                     height: 44.0,
                                   )
@@ -60,16 +62,20 @@ class Home extends StatelessWidget {
                                   padding: const EdgeInsets.all(16.0),
                                   child: new PrimaryButton(
                                     key: null,
-                                    onPressed: null,
+                                    onPressed: () {
+                                      print("This");
+                                    },
                                     text: 'Events',
                                     height: 44.0,
-                                  )
+                                  ),
                               ),
                               new Container(
                                   padding: const EdgeInsets.all(16.0),
                                   child: new PrimaryButton(
                                     key: null,
-                                    onPressed: null,
+                                    onPressed: () {
+                                      print("This");
+                                    },
                                     text: 'Report a fault',
                                     height: 44.0,
                                   )
@@ -78,7 +84,9 @@ class Home extends StatelessWidget {
                                   padding: const EdgeInsets.all(16.0),
                                   child: new PrimaryButton(
                                     key: null,
-                                    onPressed: null,
+                                    onPressed: () {
+                                      print("This");
+                                    },
                                     text: 'Get some food',
                                     height: 44.0,
                                   )
