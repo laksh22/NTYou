@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "225714376847",
+    "firebase_url": "https://techfest-5f362.firebaseio.com",
+    "project_id": "techfest-5f362",
+    "storage_bucket": "techfest-5f362.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:225714376847:android:0f45145ed8831a38",
+        "android_client_info": {
+          "package_name": "com.techfest.techfestapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "225714376847-7gl11uig94i8n97bh98vkaqlhv21cp7i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techfest.techfestapp",
+            "certificate_hash": "87d8baaf0dec2fcfa86a7f7394098ac9e3c6d906"
+          }
+        },
+        {
+          "client_id": "225714376847-8t6in5mvdb2nt78eoajftsrhv480lm64.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3a6M-cXnc-9I0ECyVae8aALBQ7fp9ajI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "225714376847-8t6in5mvdb2nt78eoajftsrhv480lm64.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
