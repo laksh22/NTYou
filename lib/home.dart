@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tech_fest_app/auth/auth.dart';
+import 'package:tech_fest_app/common/primary_button.dart';
+import 'package:tech_fest_app/events/events_list.dart';
 
 class Home extends StatelessWidget {
   Home({this.auth, this.onSignOut});
@@ -19,21 +21,88 @@ class Home extends StatelessWidget {
 
     }
 
-    return new Scaffold(
-        appBar: new AppBar(
-          actions: <Widget>[
-            new FlatButton(
-                onPressed: _signOut,
-                child: new Text('Logout', style: new TextStyle(fontSize: 17.0, color: Colors.white))
-            )
-          ],
-        ),
-        body: new Center(
-          child: new Text(
-            'Welcome',
-            style: new TextStyle(fontSize: 32.0),
+    return new SafeArea(
+      child: new Scaffold(
+          appBar: new AppBar(
+            title: new Text("Home"),
+            actions: <Widget>[
+              new FlatButton(
+                  onPressed: _signOut,
+                  child: new Text('Logout', style: new TextStyle(fontSize: 17.0, color: Colors.white))
+              )
+            ],
           ),
-        )
+          body: new Center(
+            child:new SingleChildScrollView(child: new Container(
+                padding: const EdgeInsets.all(16.0),
+                child: new Column(
+                    children: [
+                      new Image.asset(
+                          'img/ntu.png',
+                      height: 250.0,
+                      width: 250.0),
+                      new Text(
+                        'Welcome to NTU',
+                        style: new TextStyle(fontSize: 32.0),
+                      ),
+                      new Card(
+                          child: new Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                new Container(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: new PrimaryButton(
+                                      key: null,
+                                      onPressed: () {
+                                        print("This");
+                                      },
+                                      text: 'Classes',
+                                      height: 44.0,
+                                    )
+                                ),
+                                new Container(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: new PrimaryButton(
+                                      key: null,
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => EventsList()),
+                                        );
+                                      },
+                                      text: 'Events',
+                                      height: 44.0,
+                                    ),
+                                ),
+                                new Container(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: new PrimaryButton(
+                                      key: null,
+                                      onPressed: () {
+                                        print("This");
+                                      },
+                                      text: 'Report a fault',
+                                      height: 44.0,
+                                    )
+                                ),
+                                new Container(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: new PrimaryButton(
+                                      key: null,
+                                      onPressed: () {
+                                        print("This");
+                                      },
+                                      text: 'Get some food',
+                                      height: 44.0,
+                                    )
+                                ),
+                              ])
+                      ),
+                    ]
+                )
+            )
+          )
+      )),
     );
   }
 }
