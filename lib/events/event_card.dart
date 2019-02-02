@@ -11,7 +11,7 @@ class EventsCard extends StatefulWidget {
       eventImage,
       eventPrice,
       eventLocation,
-      eventCreator;
+  eventCreator;
   EventsCard(
       {this.eventName,
       this.eventHolder,
@@ -40,18 +40,10 @@ class _EventsCardState extends State<EventsCard> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: new Text(
-                  "By ${widget.eventHolder}",
-                  style:
-                  new TextStyle(fontSize: 20.0, fontWeight: FontWeight.w300),
-                ),
-              ),
-              Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: new Row(
                   children: <Widget>[
-                    new Icon(Icons.date_range, color: Colors.red[500],),
+                    new Icon(Icons.date_range),
                     new Text(widget.eventDate)
                   ],
                 ),
@@ -60,7 +52,7 @@ class _EventsCardState extends State<EventsCard> {
                 padding: const EdgeInsets.all(8.0),
                 child: new Row(
                   children: <Widget>[
-                    new Icon(Icons.location_on, color: Colors.red[500],),
+                    new Icon(Icons.location_on),
                     new Text(widget.eventLocation)
                   ],
                 ),
@@ -69,7 +61,7 @@ class _EventsCardState extends State<EventsCard> {
                 padding: const EdgeInsets.all(8.0),
                 child: new Row(
                   children: <Widget>[
-                    new Icon(Icons.attach_money, color: Colors.red[500],),
+                    new Icon(Icons.attach_money),
                     new Text(widget.eventPrice)
                   ],
                 ),
@@ -77,7 +69,7 @@ class _EventsCardState extends State<EventsCard> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: new Text(
-                  widget.eventDescription,
+                  "This will be a small description of the thing so that people know what will happen",
                   overflow: TextOverflow.clip,
                   maxLines: 2,
                   style: new TextStyle(fontSize: 18.0, color: Colors.black),

@@ -15,9 +15,9 @@ class _EventsListState extends State<EventsList>{
   List<Widget> _events = [
     new EventsCard(
       eventName: "TGIFHacks",
-    eventDate: "19/2/19",
-    eventHolder: "NTUOSS",
-    eventDescription: "This is an event that will be held in NTU by us so pls atted yay",
+      eventDate: "19/2/19",
+      eventHolder: "NTUOSS",
+      eventDescription: "This is an event that will be held in NTU by us so pls atted yay",
       eventImage: "http://fiscalsystems.wpengine.com/wp-content/uploads/2013/10/EVENTS.png",
       eventPrice: "FREE",
       eventLocation: "LT2A",
@@ -52,18 +52,18 @@ class _EventsListState extends State<EventsList>{
           appBar: new AppBar(title: new Text("Events"),
             actions: <Widget>[
               new FlatButton(
-                  onPressed: null,
-                  child: new Text('Add Event', style: new TextStyle(fontSize: 20.0, color: Colors.white)),
+                onPressed: null,
+                child: new Text('Add Event', style: new TextStyle(fontSize: 20.0, color: Colors.white)),
               )
             ],
           ),
           body: new Center(
-            child: new StreamBuilder(
-              stream: Firestore.instance.collection("events_data").snapshots(),
-                builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                  if(!snapshot.hasData) return CircularProgressIndicator();
-                  return FirestoreListView(documents: snapshot.data.documents);
-                })
+              child: new StreamBuilder(
+                  stream: Firestore.instance.collection("events_data").snapshots(),
+                  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if(!snapshot.hasData) return CircularProgressIndicator();
+                    return FirestoreListView(documents: snapshot.data.documents);
+                  })
           ),
         )
     );
