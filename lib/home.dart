@@ -3,11 +3,7 @@ import 'package:tech_fest_app/auth/auth.dart';
 import 'package:tech_fest_app/common/primary_button.dart';
 import 'package:tech_fest_app/events/events_list.dart';
 import 'package:tech_fest_app/getfood/SelectPlace.dart';
-//import 'package:tech_fest_app/getfood/SelectCuisine.dart';
-//import 'package:tech_fest_app/getfood/SelectDish.dart';
-//import 'package:tech_fest_app/getfood/SelectDish1.dart';
-import 'package:tech_fest_app/getfood/payment1.dart';
-
+import 'package:tech_fest_app/todolist/todolist_main.dart';
 
 
 class Home extends StatelessWidget {
@@ -99,7 +95,7 @@ class Home extends StatelessWidget {
                                       onPressed: (){
                                         Navigator.push(
                                           context,
-                                          MaterialPageRoute(builder: (context) =>PlacePage()),
+                                          MaterialPageRoute(builder: (context) =>TodoPage()),
                                         );
                                     },
                                     text: 'Get some food',
