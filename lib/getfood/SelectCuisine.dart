@@ -2,24 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_list_drag_and_drop/drag_and_drop_list.dart';
 
 
-class SelectCuisine extends StatelessWidget {
-  SelectCuisine({Key key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Flutter Demo',
-      theme: new ThemeData(
-          primarySwatch: Colors.blue),
-      home: new MyHomePage(
-        title: 'Canteen1',
-        key: key,
-      ),
-    );
-  }
-}
-
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
