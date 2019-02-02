@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:tech_fest_app/auth/auth.dart';
 import 'package:tech_fest_app/common/primary_button.dart';
 import 'package:tech_fest_app/events/events_list.dart';
-//import 'package:tech_fest_app/getfood/SelectPlace.dart';
+import 'package:tech_fest_app/getfood/SelectPlace.dart';
+//import 'package:tech_fest_app/getfood/SelectCuisine.dart';
+//import 'package:tech_fest_app/getfood/SelectDish.dart';
+//import 'package:tech_fest_app/getfood/SelectDish1.dart';
+import 'package:tech_fest_app/getfood/payment1.dart';
+
+
 
 class Home extends StatelessWidget {
   Home({this.auth, this.onSignOut});
@@ -91,6 +97,10 @@ class Home extends StatelessWidget {
                                     child: new PrimaryButton(
                                       key: null,
                                       onPressed: (){
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) =>PlacePage()),
+                                        );
                                     },
                                     text: 'Get some food',
                                     height: 44.0,
