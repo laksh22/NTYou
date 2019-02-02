@@ -14,6 +14,7 @@ environment:
 
 dependencies:
   firebase_auth: ^0.6.6
+  cloud_firestore:
   flutter:
     sdk: flutter
 
@@ -26,6 +27,11 @@ dependencies:
   flutter_map: any
   google_maps_flutter: ^0.0.3+3
   carousel_slider: ^1.0.1
+
+  # Atrik Libs
+  page_view_indicators: ^1.1.0
+
+
 
 dev_dependencies:
   flutter_test:
@@ -42,9 +48,6 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-  pluggin:
-    androidPackage: de.jonasbark.stripepayment
-    pluginClass: StripePaymentPlugin
 
   # To add assets to your application, add an assets section, like this:
   # assets:
