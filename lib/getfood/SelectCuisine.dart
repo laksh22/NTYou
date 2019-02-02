@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_list_drag_and_drop/drag_and_drop_list.dart';
 
-void main() {
-  runApp(new TestApp());
-}
-class TestApp extends StatelessWidget {
-  TestApp({Key key});
+
+class SelectCuisine extends StatelessWidget {
+  SelectCuisine({Key key});
 
   // This widget is the root of your application.
   @override
@@ -21,6 +19,7 @@ class TestApp extends StatelessWidget {
     );
   }
 }
+
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);

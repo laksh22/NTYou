@@ -19,9 +19,6 @@ final List<String> nameList = [
   "Canteen 9",
 ];
 
-
-void main() => runApp(new CarouselDemo());
-
 final Widget placeholder = new Container(color: Colors.blue);
 
 final List child = map<Widget>(imgList, (index, i) {
@@ -118,7 +115,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
   }
 }
 
-class CarouselDemo extends StatelessWidget {
+class SelectPlace extends StatelessWidget {
   final CarouselSlider instance = CarouselSlider(
     items: imgList.map((url) {
       return Container(

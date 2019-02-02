@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:tech_fest_app/getfood/StripePayment.dart';
 
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget{
-  const MyApp();
+class SelectDish extends StatelessWidget{
+  const SelectDish();
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +73,11 @@ class Food extends StatelessWidget {
                             textColor: Colors.blue,
                           ),
                           RaisedButton(
-                            onPressed: (){},
+                            onPressed: () {
+                              var StripePay = StripeFlutter();
+                              var token = StripePay.getCardToken(cardCVC: "901", cardNumber: "123456789012", cardExpYear: 2023, cardExpMonth: 1, publishableKey: "abc");
+                              print(token);
+                              },
                             child: const Text('Add to order'),
                             color: Colors.blue,
                             textColor: Colors.white,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tech_fest_app/auth/auth.dart';
 import 'package:tech_fest_app/common/primary_button.dart';
 import 'package:tech_fest_app/events/events_list.dart';
+import 'package:tech_fest_app/getfood/SelectPlace.dart';
 
 class Home extends StatelessWidget {
   Home({this.auth, this.onSignOut});
@@ -89,11 +90,14 @@ class Home extends StatelessWidget {
                                     padding: const EdgeInsets.all(16.0),
                                     child: new PrimaryButton(
                                       key: null,
-                                      onPressed: () {
-                                        print("This");
-                                      },
-                                      text: 'Get some food',
-                                      height: 44.0,
+                                      onPressed: (){
+                                         Navigator.push(
+                                           context,
+                                        MaterialPageRoute(builder: (context) => SelectPlace()),
+                                        );
+                                    },
+                                    text: 'Get some food',
+                                    height: 44.0,
                                     )
                                 ),
                               ])
