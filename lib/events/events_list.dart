@@ -9,34 +9,9 @@ class EventsList extends StatefulWidget{
 class _EventsListState extends State<EventsList>{
 
   List<Widget> _events = [
-    new EventsCard(
-      eventName: "TGIFHacks",
-    eventDate: "19/2/19",
-    eventHolder: "NTUOSS",
-    eventDescription: "This is an event that will be held in NTU by us so pls atted yay",
-      eventImage: "http://fiscalsystems.wpengine.com/wp-content/uploads/2013/10/EVENTS.png",
-      eventPrice: "FREE",
-      eventLocation: "LT2A",
-    ),
-    new EventsCard(
-      eventName: "TGIFHacks",
-      eventDate: "19/2/19",
-      eventHolder: "NTUOSS",
-      eventDescription: "This is an event that will be held in NTU by us so pls atted yay",
-      eventImage: "http://fiscalsystems.wpengine.com/wp-content/uploads/2013/10/EVENTS.png",
-      eventPrice: "FREE",
-      eventLocation: "LT2A",
-    ),
-    new EventsCard(
-      eventName: "TGIFHacks",
-      eventDate: "19/2/19",
-      eventHolder: "NTUOSS",
-      eventDescription: "This is an event that will be held in NTU by us so pls atted yay",
-      eventImage: "http://fiscalsystems.wpengine.com/wp-content/uploads/2013/10/EVENTS.png",
-      eventPrice: "FREE",
-      eventLocation: "LT2A",
-    ),
-
+    new EventsCard(eventName: "TGIFHacks",),
+    new EventsCard(eventName: "HackOSS",),
+    new EventsCard(eventName: "Speaker Sharing",),
   ];
 
   //TODO: Add search filters
@@ -45,24 +20,18 @@ class _EventsListState extends State<EventsList>{
   Widget build(BuildContext context) {
     return new SafeArea(
         child: new Scaffold(
-          appBar: new AppBar(title: new Text("Events"),
-            actions: <Widget>[
-              new FlatButton(
-                  onPressed: null,
-                  child: new Text('Add Event', style: new TextStyle(fontSize: 20.0, color: Colors.white)),
-              )
-            ],
+          appBar: new AppBar(title: new Text("Events")
           ),
           body: new Center(
             child: new ListView.builder(
               itemCount: _events.length,
                 itemBuilder: (BuildContext context, int index){
-
-                   return Container(child: _events[index]);
-
+                  return new Container(
+                    child: _events[index]
+                  );
                 }
             ),
-          ),
+          )
         )
     );
   }
