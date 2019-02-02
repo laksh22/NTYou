@@ -68,7 +68,7 @@ class Home extends StatelessWidget {
                                       onPressed: () {
                                         Navigator.push(
                                           context,
-                                          MaterialPageRoute(builder: (context) => EventsList()),
+                                          MaterialPageRoute(builder: (context) => EventsList(auth: auth)),
                                         );
                                       },
                                       text: 'Events',

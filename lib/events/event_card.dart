@@ -10,7 +10,8 @@ class EventsCard extends StatefulWidget {
       eventDescription,
       eventImage,
       eventPrice,
-      eventLocation;
+      eventLocation,
+      eventCreator;
   EventsCard(
       {this.eventName,
       this.eventHolder,
@@ -18,7 +19,8 @@ class EventsCard extends StatefulWidget {
       this.eventDescription,
       this.eventImage,
       this.eventPrice,
-      this.eventLocation});
+      this.eventLocation,
+      this.eventCreator});
 }
 
 class _EventsCardState extends State<EventsCard> {
@@ -38,10 +40,18 @@ class _EventsCardState extends State<EventsCard> {
                 ),
               ),
               Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: new Text(
+                  "By ${widget.eventHolder}",
+                  style:
+                  new TextStyle(fontSize: 20.0, fontWeight: FontWeight.w300),
+                ),
+              ),
+              Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: new Row(
                   children: <Widget>[
-                    new Icon(Icons.date_range),
+                    new Icon(Icons.date_range, color: Colors.red[500],),
                     new Text(widget.eventDate)
                   ],
                 ),
@@ -50,7 +60,7 @@ class _EventsCardState extends State<EventsCard> {
                 padding: const EdgeInsets.all(8.0),
                 child: new Row(
                   children: <Widget>[
-                    new Icon(Icons.location_on),
+                    new Icon(Icons.location_on, color: Colors.red[500],),
                     new Text(widget.eventLocation)
                   ],
                 ),
@@ -59,7 +69,7 @@ class _EventsCardState extends State<EventsCard> {
                 padding: const EdgeInsets.all(8.0),
                 child: new Row(
                   children: <Widget>[
-                    new Icon(Icons.attach_money),
+                    new Icon(Icons.attach_money, color: Colors.red[500],),
                     new Text(widget.eventPrice)
                   ],
                 ),
@@ -67,7 +77,7 @@ class _EventsCardState extends State<EventsCard> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: new Text(
-                  "This will be a small description of the thing so that people know what will happen",
+                  widget.eventDescription,
                   overflow: TextOverflow.clip,
                   maxLines: 2,
                   style: new TextStyle(fontSize: 18.0, color: Colors.black),
