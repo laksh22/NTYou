@@ -2,6 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:tech_fest_app/getfood/StripePayment.dart';
 
+class SelectDish extends StatelessWidget{
+  const SelectDish();
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: const Food(),
+    );
+  }
+}
+
 class Dish{
   const Dish({this.name, this.price, this.calories, this.imageUrl});
   final String name;

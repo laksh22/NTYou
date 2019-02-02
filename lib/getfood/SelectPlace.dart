@@ -146,7 +146,10 @@ class SelectPlace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    // print(instance.nextPage());
+    return MaterialApp(
+        title: 'demo',
+        home: Scaffold(
             appBar: AppBar(title: Text('Get Food from Canteens')),
             body: ListView(
               children: <Widget>[
@@ -174,6 +177,7 @@ class SelectPlace extends StatelessWidget {
                 ),
               ],
             )
-        );
+        )
+    );
   }
 }
