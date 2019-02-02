@@ -20,12 +20,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-
-  # Shirley Libs
   flutter_list_drag_and_drop: "^0.1.3"
-  flutter_map: any
-  google_maps_flutter: ^0.0.3+3
-  carousel_slider: ^1.0.1
 
 dev_dependencies:
   flutter_test:
@@ -45,6 +40,7 @@ flutter:
   plugin:
     androidPackage: com.mtaliaf.stripeflutter
     pluginClass: StripeFlutterPlugin
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -78,4 +74,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
-flutter_swiper : ^lastest_version
