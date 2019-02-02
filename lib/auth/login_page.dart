@@ -144,35 +144,37 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text(widget.title),
-        ),
-        backgroundColor: Colors.grey[300],
-        body: new SingleChildScrollView(child: new Container(
-            padding: const EdgeInsets.all(16.0),
-            child: new Column(
-                children: [
-                  new Card(
-                      child: new Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            new Container(
-                                padding: const EdgeInsets.all(16.0),
-                                child: new Form(
-                                    key: formKey,
-                                    child: new Column(
-                                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                                      children: usernameAndPassword() + submitWidgets(),
-                                    )
-                                )
-                            ),
-                          ])
-                  ),
-                  hintText()
-                ]
-            )
-        ))
+    return new SafeArea(
+      child: new Scaffold(
+          appBar: new AppBar(
+            title: new Text(widget.title),
+          ),
+          backgroundColor: Colors.grey[300],
+          body: new SingleChildScrollView(child: new Container(
+              padding: const EdgeInsets.all(16.0),
+              child: new Column(
+                  children: [
+                    new Card(
+                        child: new Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              new Container(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: new Form(
+                                      key: formKey,
+                                      child: new Column(
+                                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                                        children: usernameAndPassword() + submitWidgets(),
+                                      )
+                                  )
+                              ),
+                            ])
+                    ),
+                    hintText()
+                  ]
+              )
+          ))
+      ),
     );
   }
 
