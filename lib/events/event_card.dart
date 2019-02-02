@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tech_fest_app/common/primary_button.dart';
 
 class EventsCard extends StatefulWidget {
   @override
@@ -20,10 +19,11 @@ class EventsCard extends StatefulWidget {
       this.eventImage,
       this.eventPrice,
       this.eventLocation,
-      this.eventCreator});
+      this.eventCreator,});
 }
 
 class _EventsCardState extends State<EventsCard> {
+
   void _showDialog() {
     showDialog(
         context: context,
@@ -69,7 +69,7 @@ class _EventsCardState extends State<EventsCard> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: new Text(
-                  "This will be a small description of the thing so that people know what will happen",
+                  widget.eventDescription,
                   overflow: TextOverflow.clip,
                   maxLines: 2,
                   style: new TextStyle(fontSize: 18.0, color: Colors.black),
@@ -90,7 +90,7 @@ class _EventsCardState extends State<EventsCard> {
                         color: Colors.blue,
                         textColor: Colors.black87,
                         onPressed: () {
-                          print("This");
+                          null;
                         }),
                   ),
                 ),
@@ -102,16 +102,14 @@ class _EventsCardState extends State<EventsCard> {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: Make fields as props
     //TODO: Solve text field overflow problem
-
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: new Card(
           child: new Column(
         children: <Widget>[
           Image.network(
-            "https://cdn.vox-cdn.com/thumbor/GMaMT9KjmKYzSsV4qylbE3aSHgM=/0x0:1720x1160/1200x800/filters:focal(723x443:997x717)/cdn.vox-cdn.com/uploads/chorus_image/image/51234963/Events-Hero.0.jpg",
+            widget.eventImage,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
@@ -122,7 +120,7 @@ class _EventsCardState extends State<EventsCard> {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                       child: new Text(
-                    "18/2/19",
+                    widget.eventDate,
                     style:
                         new TextStyle(fontSize: 22.0, color: Colors.red[600]),
                   )),
@@ -141,7 +139,7 @@ class _EventsCardState extends State<EventsCard> {
                     Flexible(
                         child: Container(
                             child: new Text(
-                      "NTUOSS",
+                      widget.eventHolder,
                       overflow: TextOverflow.ellipsis,
                       style:
                           new TextStyle(fontSize: 18.0, color: Colors.black54),
@@ -175,7 +173,7 @@ class _EventsCardState extends State<EventsCard> {
             padding: const EdgeInsets.all(8.0),
             child: new Container(
                 child: new Text(
-              "This will be a small description of the thing so that people know what will happen",
+              widget.eventDescription,
               overflow: TextOverflow.clip,
               maxLines: 2,
               style: new TextStyle(fontSize: 18.0, color: Colors.black),

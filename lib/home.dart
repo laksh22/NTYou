@@ -5,8 +5,9 @@ import 'package:tech_fest_app/events/events_list.dart';
 import 'package:tech_fest_app/Fault Reporting/test.dart';
 
 class Home extends StatelessWidget {
-  Home({this.auth, this.onSignOut});
+  Home({this.auth, this.onSignOut, this.userId});
   final BaseAuth auth;
+  final String userId;
   final VoidCallback onSignOut;
 
   @override
@@ -68,7 +69,7 @@ class Home extends StatelessWidget {
                                       onPressed: () {
                                         Navigator.push(
                                           context,
-                                          MaterialPageRoute(builder: (context) => EventsList()),
+                                          MaterialPageRoute(builder: (context) => EventsList(auth: auth, userId: userId,)),
                                         );
                                       },
                                       text: 'Events',

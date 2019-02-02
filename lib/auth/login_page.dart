@@ -79,14 +79,22 @@ class _LoginPageState extends State<LoginPage> {
     return [
       padded(child: new TextFormField(
         key: new Key('email'),
-        decoration: new InputDecoration(labelText: 'Email'),
+        decoration: InputDecoration(
+        hintText: 'Email',
+        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+      ),
         autocorrect: false,
         validator: (val) => val.isEmpty ? 'Email can\'t be empty.' : null,
         onSaved: (val) => _email = val,
       )),
       padded(child: new TextFormField(
         key: new Key('password'),
-        decoration: new InputDecoration(labelText: 'Password'),
+        decoration: new InputDecoration(
+          hintText: 'Password',
+          contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+        ),
         obscureText: true,
         autocorrect: false,
         validator: (val) => val.isEmpty ? 'Password can\'t be empty.' : null,
