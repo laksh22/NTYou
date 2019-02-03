@@ -133,7 +133,7 @@ class HeroPageState extends State<HeroPage>
               pinned: true,
               floating: false,
               flexibleSpace: FlexibleSpaceBar(
-                  title: Text("Sliver title"),
+                  title: Text("Menu"),
                   background: Image.asset("assets/veg_rice.jpg",fit: BoxFit.cover,)
               ),
             ),

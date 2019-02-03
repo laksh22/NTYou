@@ -4,10 +4,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:tech_fest_app/getfood/SelectDish1.dart';
 
 final List<String> imgList = [
-  'https://lh5.googleusercontent.com/p/AF1QipNBRRDOZmQFplhhq4yLtVGgLqcauAVggg3aBpHG=w204-h336-p-k-no',
+  'http://maps.ntu.edu.sg/static/photos/41_t.jpg',
   'http://www.jayyeo.com/projects/nanyangchronicle/wp-content/uploads/2013/08/KW_9179_RS.jpg',
   'http://www.ntu.edu.sg/has/FnB/SiteAssets/Pages/HallCanteens/NorthHIllFC_280x180.jpg',
-  'https://pic.sgchinese.net/attachments/forum/201508/19/113839h24fzyztfmm6iid7.png'
   'https://pic.sgchinese.net/attachments/forum/201508/19/113839h24fzyztfmm6iid7.png',
   'http://1.bp.blogspot.com/-YO6qZgyktUs/Um_E-YhopuI/AAAAAAAAKQs/1R9fc56wmd4/s1600/2.+NTU+Hall+13+%2528Hong+Yun%2529.JPG',
 ];
@@ -17,7 +16,6 @@ final List<String> nameList = [
   "Canteen B",
   "Canteen North Hill Court",
   "Canteen 1",
-  "Canteen 2",
   "Canteen 13",
 ];
 
@@ -50,7 +48,7 @@ final List child = map<Widget>(imgList, (index, i) {
                       child: Text('${nameList[index]}',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 50.0,
+                          fontSize: 30.0,
                           fontWeight: FontWeight.bold,
                         ),
                       )
