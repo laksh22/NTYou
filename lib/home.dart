@@ -4,7 +4,7 @@ import 'package:tech_fest_app/common/primary_button.dart';
 import 'package:tech_fest_app/events/events_list.dart';
 import 'package:tech_fest_app/getfood/SelectPlace.dart';
 import 'package:tech_fest_app/todolist/todolist_main.dart';
-import 'package:tech_fest_app/getfood/SelectDish1.dart';
+import 'package:tech_fest_app/campusbus/bus_tracker.dart';
 
 class Home extends StatelessWidget {
   Home({this.auth, this.onSignOut});
@@ -95,7 +95,7 @@ class Home extends StatelessWidget {
                                       onPressed: (){
                                         Navigator.push(
                                           context,
-                                          MaterialPageRoute(builder: (context) =>PlacePage()),
+                                          MaterialPageRoute(builder: (context) =>BusPage()),
                                         );
                                     },
                                     text: 'Get some food',
