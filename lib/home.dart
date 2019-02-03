@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tech_fest_app/auth/auth.dart';
 import 'package:tech_fest_app/common/primary_button.dart';
 import 'package:tech_fest_app/events/events_list.dart';
-import 'package:tech_fest_app/Fault Reporting/test.dart';
+import 'package:tech_fest_app/Fault Reporting/pageone.dart';
 import 'package:tech_fest_app/classes/classes.dart';
 import 'package:tech_fest_app/todolistv2/todomain.dart';
 import 'package:tech_fest_app/getfood//SelectPlace.dart';
@@ -62,7 +62,7 @@ class Home extends StatelessWidget {
         onTap: (){
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => MyApp()),
+            MaterialPageRoute(builder: (context) => PageOne()),
           );
         },
       ),
