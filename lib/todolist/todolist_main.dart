@@ -21,19 +21,12 @@ class ColorChoies {
 
 List<TodoObject> todos = [
   // new TodoObject.import("SOME_RANDOM_UUID", "Custom", 1, ColorChoies.colors[0], Icons.alarm, [new TaskObject("Task", new DateTime.now()),new TaskObject("Task2", new DateTime.now()),new TaskObject.import("Task3", new DateTime.now(), true)]),
-  new TodoObject.import("SOME_RANDOM_UUID", "Custom", 1, ColorChoies.colors[1], Icons.alarm, {
+  new TodoObject.import("SOME_RANDOM_UUID", "Data Sctructures - CZ1007", 1, ColorChoies.colors[1], Icons.alarm, {
     new DateTime(2018, 5, 3): [
-      new TaskObject("Meet Clients", new DateTime(2018, 5, 3)),
-      new TaskObject("Design Sprint", new DateTime(2018, 5, 3)),
-      new TaskObject("Icon Set Design for Mobile", new DateTime(2018, 5, 3)),
-      new TaskObject("HTML/CSS Study", new DateTime(2018, 5, 3)),
+      new TaskObject("Do lams for week 3", new DateTime(2018, 5, 3)),
+      new TaskObject("Submit week 2 assignment", new DateTime(2018, 5, 3)),
+      new TaskObject("Get the book: Data structures-3rd edition", new DateTime(2018, 5, 3)),
     ],
-    new DateTime(2018, 5, 4): [
-      new TaskObject("Meet Clients", new DateTime(2018, 5, 4)),
-      new TaskObject("Design Sprint", new DateTime(2018, 5, 4)),
-      new TaskObject("Icon Set Design for Mobile", new DateTime(2018, 5, 4)),
-      new TaskObject("HTML/CSS Study", new DateTime(2018, 5, 4)),
-    ]
   }),
   new TodoObject("Personal", Icons.person),
   new TodoObject("Work", Icons.work),
@@ -166,7 +159,7 @@ class _MyHomePageState extends State<TodoPage> with TickerProviderStateMixin {
                         new Padding(
                           padding: const EdgeInsets.only(bottom: 10.0),
                           child: new Text(
-                            "Hello, John.",
+                            "Hello, NTU Student.",
                             style: new TextStyle(
                               color: Colors.white,
                               fontSize: 30.0

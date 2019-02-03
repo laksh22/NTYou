@@ -4,7 +4,7 @@ import 'package:tech_fest_app/common/primary_button.dart';
 import 'package:tech_fest_app/events/events_list.dart';
 import 'package:tech_fest_app/Fault Reporting/test.dart';
 import 'package:tech_fest_app/classes/classes.dart';
-import 'package:tech_fest_app/todolist/todolist_main.dart';
+import 'package:tech_fest_app/todolistv2/todomain.dart';
 
 class Home extends StatelessWidget {
   Home({this.auth, this.onSignOut, this.userId});
@@ -74,7 +74,7 @@ class Home extends StatelessWidget {
                                       onPressed: () {
                                         Navigator.push(
                                           context,
-                                          MaterialPageRoute(builder: (context) => TodoPage()),
+                                          MaterialPageRoute(builder: (context) => MyHomePageToDo()),
                                         );
                                       },
                                       text: 'ToDo list',
