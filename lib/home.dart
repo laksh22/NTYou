@@ -5,6 +5,7 @@ import 'package:tech_fest_app/events/events_list.dart';
 import 'package:tech_fest_app/Fault Reporting/test.dart';
 import 'package:tech_fest_app/classes/classes.dart';
 import 'package:tech_fest_app/todolistv2/todomain.dart';
+import 'package:tech_fest_app/getfood//SelectPlace.dart';
 
 class Home extends StatelessWidget {
   Home({this.auth, this.onSignOut, this.userId ,this.email});
@@ -114,7 +115,11 @@ class Home extends StatelessWidget {
                                     child: new PrimaryButton(
                                       key: null,
                                       onPressed: () {
-                                        print("This");
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => PlacePage(),
+                                        ),
+                                        );
                                       },
                                       text: 'Get some food',
                                       height: 44.0,

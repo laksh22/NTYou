@@ -1,18 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget{
-  const MyApp();
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const Food(),
-    );
-  }
-}
+import 'package:tech_fest_app/getfood/payment1.dart';
 
 class Dish{
   const Dish({this.name, this.price, this.calories, this.imageUrl});
@@ -27,18 +15,37 @@ final List<Dish> _dishes = <Dish>[
       name: 'Veg Noodles',
       price: '4 SGD',
       calories: '400k',
-      imageUrl: 'http://yesofcorsa.com/wp-content/uploads/2015/08/3050_noodles.jpg'
+      imageUrl: 'one.jpg'
   ),
   Dish(
     name: 'Beef Fried Rice',
     price: '5',
     calories: '500k',
-    imageUrl:'https://cdn-image.foodandwine.com/sites/default/files/styles/medium_2x/public/201205-xl-beef-fried-rice.jpg?itok=DJSuhhcl',
-  )
+    imageUrl:'201205-xl-beef-fried-rice.jpg',
+  ),
+  Dish(
+    name: 'Fried Fillet Rice',
+    price: '5',
+    calories: '500k',
+    imageUrl: 'crispy-fish-Greek-rice-bowls-1.jpg',
+  ),
+  Dish(
+    name: 'Chicken Fillet Rice',
+    price: '5',
+    calories: '600k',
+    imageUrl:'92122816-chicken-fillet-with-fried-rice-on-white-plate-.jpg',
+  ),
 ];
 
-class Food extends StatelessWidget {
-  const Food({Key key}): super(key: key);
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+  final String title;
+  @override
+  SelectFood createState() => new SelectFood();
+}
+
+class SelectFood extends State<MyHomePage> {
   Widget _dialogBuilder(BuildContext context, Dish dish){
     ThemeData localTheme = Theme.of(context);
     return SimpleDialog(
@@ -74,7 +81,12 @@ class Food extends StatelessWidget {
                             textColor: Colors.blue,
                           ),
                           RaisedButton(
-                            onPressed: (){},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) =>PayPage()),
+                              );
+                              },
                             child: const Text('Add to order'),
                             color: Colors.blue,
                             textColor: Colors.white,
@@ -109,12 +121,12 @@ class Food extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Menu'),
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text('Menu'),
       ),
 
-      body: ListView.builder(
+      body: new ListView.builder(
         itemCount: _dishes.length,
         itemExtent: 60.0,
         itemBuilder: _listItemBuilder,
