@@ -64,7 +64,7 @@ flutter:
   assets:
     - img/ntu.png
     - data_repo/structuredData.json
-    - assets/images/profile_image.jpg
+    - assets/images/profile_image.png
   fonts:
     - family : MyFlutterApp
       fonts:

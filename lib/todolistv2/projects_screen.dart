@@ -52,19 +52,19 @@ class _ProjectScreenState extends State<ProjectsScreen> {
                         height: 32.0,
                       ),
                       CircularImage(
-                        path: "assets/images/profile_image.jpg",
+                        path: "assets/images/profile_image.png", 
                         width: 50.0,
                         height: 60.0,
                       ),
                       SizedBox(
                         height: 24.0,
                       ),
-                      Text("Hello, Jane.",
+                      Text("Hello, Student.",
                           style: Theme.of(context).textTheme.body1),
                       SizedBox(
                         height: 16.0,
                       ),
-                      Text("Looks like feel good.",
+                      Text("Looks like you feel good.",
                           style: Theme.of(context).textTheme.body2),
                       StoreConnector<CategoryState, int>(
                         converter: (store) => store.state.categories.fold(
