@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:page_view_indicators/circle_page_indicator.dart';
+import 'pageone.dart';
+import 'pagetwo.dart';
+import 'pagethree.dart';
 
 void main() => runApp(MyApp());
 
@@ -26,28 +29,27 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  final _items = [
-    Colors.blue,
-    Colors.orange,
-    Colors.green,
-    Colors.pink,
-    Colors.red,
-    Colors.amber,
-    Colors.brown,
-    Colors.yellow,
-    Colors.blue,
-  ];
+
+  List<Widget> myPages = [PageOne(), PageTwo(), PageThree()];
+
+  String yourname;
+  String number;
+  String description;
+
   final _pageController = PageController();
   final _currentPageNotifier = ValueNotifier<int>(0);
-  final _boxHeight = 150.0;
+  final _boxHeight = 680.0;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return new SafeArea(
+    child: new Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
-        title: Text('CirclePageIndicator Demo'),
+        title: Text('Fault Reporting'),
       ),
       body: _buildBody(),
+    )
     );
   }
 
@@ -69,16 +71,9 @@ class HomePageState extends State<HomePage> {
       color: Colors.black87,
       height: _boxHeight,
       child: PageView.builder(
-          itemCount: _items.length,
+          itemCount: myPages.length,
           controller: _pageController,
-          itemBuilder: (BuildContext context, int index) {
-            return Center(
-              child: FlutterLogo(
-                colors: _items[index],
-                size: 50.0,
-              ),
-            );
-          },
+          itemBuilder: (context, position)=>myPages[position],
           onPageChanged: (int index) {
             _currentPageNotifier.value = index;
           }),
@@ -93,7 +88,7 @@ class HomePageState extends State<HomePage> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: CirclePageIndicator(
-          itemCount: _items.length,
+          itemCount: myPages.length,
           currentPageNotifier: _currentPageNotifier,
         ),
       ),
