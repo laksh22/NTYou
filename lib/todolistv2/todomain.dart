@@ -11,7 +11,7 @@ import 'package:redux/redux.dart';
 //         Category(0, Icons.person, Colors.blue, "Personal", [
 //           Task(0, "Task", false),
 //         ]),
-//         Category(1, Icons.content_paste, Colors.orange, "Work", []),
+//         Category(1, Icons.content_paste, Colors.orange, "Work", [])
 //       ]));
 //   runApp(FlutterReduxApp(store: store));
 // }
@@ -19,7 +19,7 @@ import 'package:redux/redux.dart';
 // class FlutterReduxApp extends StatelessWidget {
 //   final Store<CategoryState> store;
 //   const FlutterReduxApp({Key key, this.store}) : super(key: key);
-
+//
 //   @override
 //   Widget build(BuildContext context) {
 //     return StoreProvider<CategoryState>(
@@ -45,6 +45,14 @@ import 'package:redux/redux.dart';
 // }
 
 class MyHomePageToDo extends StatefulWidget {
+  final store = Store<CategoryState>(stateReducer,
+       initialState: CategoryState([
+         Category(0, Icons.person, Colors.blue, "Personal", [
+           Task(0, "Task", false),
+         ]),
+         Category(1, Icons.content_paste, Colors.orange, "Work", [])
+       ]));
+
   MyHomePageToDo({Key key, this.title}) : super(key: key);
 
   final String title;
