@@ -3,6 +3,8 @@ import 'package:tech_fest_app/auth/auth.dart';
 import 'package:tech_fest_app/common/primary_button.dart';
 import 'package:tech_fest_app/events/events_list.dart';
 import 'package:tech_fest_app/Fault Reporting/test.dart';
+import 'package:tech_fest_app/classes/classes.dart';
+import 'package:tech_fest_app/todolist/todolist_main.dart';
 
 class Home extends StatelessWidget {
   Home({this.auth, this.onSignOut, this.userId});
@@ -56,9 +58,26 @@ class Home extends StatelessWidget {
                                     child: new PrimaryButton(
                                       key: null,
                                       onPressed: () {
-                                        print("This");
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => MyClassApp()),
+                                        );
                                       },
                                       text: 'Classes',
+                                      height: 44.0,
+                                    )
+                                ),
+                                new Container(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: new PrimaryButton(
+                                      key: null,
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => TodoPage()),
+                                        );
+                                      },
+                                      text: 'ToDo list',
                                       height: 44.0,
                                     )
                                 ),
