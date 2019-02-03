@@ -95,7 +95,7 @@ class Home extends StatelessWidget {
                                       onPressed: (){
                                         Navigator.push(
                                           context,
-                                          MaterialPageRoute(builder: (context) =>BusPage()),
+                                          MaterialPageRoute(builder: (context) =>TodoPage()),
                                         );
                                     },
                                     text: 'Get some food',

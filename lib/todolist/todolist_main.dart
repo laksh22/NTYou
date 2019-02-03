@@ -10,6 +10,8 @@ import 'package:flutter/foundation.dart';
 import 'CustomCheckboxTile.dart';
 import 'package:intl/intl.dart';
 import 'CustomAppBar.dart';
+import 'package:tech_fest_app/todolist/AddTask.dart';
+
 
 class ColorChoies {
   static const List<Color> colors = [
@@ -379,7 +381,12 @@ class _MyHomePageState extends State<TodoPage> with TickerProviderStateMixin {
               child: new Align(
                 alignment: Alignment.bottomRight,
                 child: new FloatingActionButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AddTaskPage()),
+                    );
+                  },
                   tooltip: 'Increment',
                   child: new Icon(Icons.add),
                 ),

@@ -161,6 +161,8 @@ class _BusPageState extends State<BusPage> {
                       0,30, MediaQuery.of(context).size
                       .width, 600.0),
                   userAgent: kAndroidUserAgent);
+              final Rect rect = new Rect.fromLTWH(0.0, 30.0, 700, 600);
+              flutterWebviewPlugin.resize(rect);
             },
             child: const Text('Go to the bus'),
             color: Colors.blue,
