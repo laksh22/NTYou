@@ -27,7 +27,7 @@ class PageOneState extends State<PageOne> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      // appBar: new AppBar(title: new Text("Fault Reporting"),),
+      appBar: new AppBar(title: new Text("Fault Reporting"),),
       body: SingleChildScrollView(
         child: Center(
           child: Form(
