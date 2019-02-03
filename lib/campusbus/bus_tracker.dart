@@ -6,10 +6,11 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 import 'dart:io';
 
-const kAndroidUserAgent = "Mozilla/5.0 (Linux; Android 4.4.4; One Build/KTU84L.H4) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/28.0.0.20.16;]";
-String selectedUrl = 'https://baseride.com/maps/public/ntu/';
 
-//const _client = new HttpClient();
+const kAndroidUserAgent = "Mozilla/5.0 (Linux; Android 4.4.4; One Build/KTU84L.H4) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/28.0.0.20.16;]";
+String selectedUrl = 'http://baseride.com/maps/public/ntu/';
+
+//HttpClient _client = new HttpClient();
 //_client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
 
 class BusPage extends StatefulWidget {
@@ -147,24 +148,25 @@ class _BusPageState extends State<BusPage> {
           Align(
               child: Wrap(
                   children:[
-                    RaisedButton(
-                      onPressed: () {
-                        flutterWebviewPlugin.launch(selectedUrl,
-                            rect: new Rect.fromLTWH(
-                                0, 30, MediaQuery
-                                .of(context)
-                                .size
-                                .width, 600.0),
-                            userAgent: kAndroidUserAgent);
-                      },
-                      child: const Text('Go to the bus'),
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                    ),
+
                   ]
               )
           ),
-
+          Padding(
+              padding: const EdgeInsets.all(16.0),
+          child: RaisedButton(
+            onPressed: () {
+              flutterWebviewPlugin.launch(selectedUrl,
+                  rect: new Rect.fromLTWH(
+                      0,30, MediaQuery.of(context).size
+                      .width, 600.0),
+                  userAgent: kAndroidUserAgent);
+            },
+            child: const Text('Go to the bus'),
+            color: Colors.blue,
+            textColor: Colors.white,
+          ),
+          ),
           new Container(
             margin: const EdgeInsets.only(top: 350.0),
             child : new RaisedButton(
