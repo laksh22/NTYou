@@ -25,19 +25,15 @@ void main() => runApp(FlutterReduxApp(store: store));
    Widget build(BuildContext context) {
      return StoreProvider<CategoryState>(
        child: MaterialApp(
-         title: 'Flutter Demo',
+         title: 'Tech Fest',
          theme: ThemeData(
              primarySwatch: Colors.blue,
-             textTheme: TextTheme(
-               body1: TextStyle(color: Colors.white, fontSize: 28.0),
-               body2: TextStyle(color: Colors.white54, fontSize: 14.0),
-               display1: TextStyle(color: Colors.black87, fontSize: 36.0),
-               caption: TextStyle(
-                   color: Colors.white,
-                   fontSize: 12.0,
-                   fontWeight: FontWeight.bold),
-               subhead: TextStyle(color: Colors.black54, fontSize: 12.0),
-             )),
+             primaryColor: Colors.lightBlue[700],
+        accentColor: Colors.lightBlue[700],
+        scaffoldBackgroundColor: Color(0xFFF5F5F5),
+        buttonTheme: new ButtonThemeData(
+          buttonColor: Colors.lightBlue[700],
+        ),),
          home: new RootPage(auth: new Auth()),
        ),
        store: store,
