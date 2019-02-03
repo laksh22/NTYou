@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:tech_fest_app/getfood/SelectCuisine.dart';
 import 'package:tech_fest_app/getfood/SelectDish1.dart';
-import 'package:tech_fest_app/getfood/SelectDish.dart';
+
 
 final List<String> imgList = [
   'http://maps.ntu.edu.sg/static/photos/41_t.jpg',
@@ -103,7 +102,7 @@ class PlacePageState extends State<PlacePage> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => MyHomePage()),
+                        MaterialPageRoute(builder: (context) => HeroPage()),
                       );
                     },
                     textColor: Colors.white,

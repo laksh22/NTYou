@@ -15,26 +15,28 @@ final List<Dish> _dishes = <Dish>[
       name: 'Veg Noodles',
       price: '4 SGD',
       calories: '400k',
-      imageUrl: '3050_noodles.jpg'
+      imageUrl: 'one.jpg'
   ),
   Dish(
     name: 'Beef Fried Rice',
     price: '5',
     calories: '500k',
-    imageUrl:'201205-xl-beef-fried-rice.jpg'),
+    imageUrl:'201205-xl-beef-fried-rice.jpg',
+  ),
+  Dish(
+    name: 'Fried Fillet Rice',
+    price: '5',
+    calories: '500k',
+    imageUrl: 'crispy-fish-Greek-rice-bowls-1.jpg',
+  ),
   Dish(
     name: 'Chicken Fillet Rice',
     price: '5',
-    calories: '500k',
-    imageUrl: '92122816-chicken-fillet-with-fried-rice-on-white-plate-.jpg',
-  ),
-  Dish(
-    name: 'Fish Fillet Rice',
-    price: '5',
     calories: '600k',
-    imageUrl:'crispy-fish-Greek-rice-bowls-1.jpg',
+    imageUrl:'92122816-chicken-fillet-with-fried-rice-on-white-plate-.jpg',
   ),
 ];
+
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);

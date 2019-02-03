@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:tech_fest_app/layout.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/foundation.dart';
+import "package:flutter/material.dart";
+import 'package:tech_fest_app/getfood/payment1.dart';
 
 class Dish{
   const Dish({this.name, this.price, this.calories, this.imageUrl});
@@ -16,153 +14,241 @@ final List<Dish> _dishes = <Dish>[
       name: 'Veg Noodles',
       price: '4 SGD',
       calories: '400k',
-      imageUrl: '3050_noodles.jpg'
+      imageUrl: 'one.jpg'
   ),
   Dish(
-    name: 'Beef Fried Rice',
-    price: '5',
-    calories: '500k',
-    imageUrl:'201205-xl-beef-fried-rice.jpg',
-  ),
-  Dish(
-    name: 'Fried Fillet Rice',
-    price: '5',
-    calories: '500k',
-    imageUrl: 'crispy-fish-Greek-rice-bowls-1.jpg',
-  ),
+      name: 'Beef Fried Rice',
+      price: '5',
+      calories: '500k',
+      imageUrl:'201205-xl-beef-fried-rice.jpg'),
   Dish(
     name: 'Chicken Fillet Rice',
     price: '5',
+    calories: '500k',
+    imageUrl: '92122816-chicken-fillet-with-fried-rice-on-white-plate-.jpg',
+  ),
+  Dish(
+    name: 'Fish Fillet Rice',
+    price: '5',
     calories: '600k',
-    imageUrl:'92122816-chicken-fillet-with-fried-rice-on-white-plate-.jpg',
+    imageUrl:'crispy-fish-Greek-rice-bowls-1.jpg',
   ),
 ];
-class HeroHeader implements SliverPersistentHeaderDelegate {
-  HeroHeader({
-    this.layoutGroup,
-    this.onLayoutToggle,
-    this.minExtent,
-    this.maxExtent,
-  });
-  final LayoutGroup layoutGroup;
-  final VoidCallback onLayoutToggle;
-  double maxExtent;
-  double minExtent;
-
+class HeroPage extends StatefulWidget {
+  HeroPage({Key key, this.title}) : super(key: key);
+  final String title;
   @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Stack(
-      fit: StackFit.expand,
+  HeroPageState createState() => new HeroPageState();
+}
+
+class HeroPageState extends State<HeroPage>
+{
+  List<String> itemData = ["one","two","three","four"];
+
+  Widget _dialogBuilder(BuildContext context, Dish dish){
+    ThemeData localTheme = Theme.of(context);
+    return SimpleDialog(
+      contentPadding: EdgeInsets.zero,
       children: [
-        Image.asset(
-          'assets/BackGround.jpg',
-          fit: BoxFit.cover,
-        ),
-        Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.transparent,
-                Colors.black54,
-              ],
-              stops: [0.5, 1.0],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              tileMode: TileMode.repeated,
-            ),
-          ),
-        ),
-        Positioned(
-          left: 4.0,
-          top: 4.0,
-          child: SafeArea(
-            child: IconButton(
-              icon: Icon(layoutGroup == LayoutGroup.nonScrollable
-                  ? Icons.filter_1
-                  : Icons.filter_2),
-              onPressed: onLayoutToggle,
-            ),
-          ),
-        ),
-        Positioned(
-          left: 16.0,
-          right: 16.0,
-          bottom: 16.0,
-          child: Text(
-            'Hero Image',
-            style: TextStyle(fontSize: 32.0, color: Colors.white),
+        Image.network(
+            dish.imageUrl,
+            fit: BoxFit.fill),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children:[
+              Text(dish.name,
+                style: localTheme.textTheme.display1,
+              ),
+              Text(dish.price,
+                  style: localTheme.textTheme.subhead.copyWith(
+                    fontStyle: FontStyle.italic,
+                  )),
+              SizedBox(height: 16.0),
+              Text(dish.calories,
+                  style: localTheme.textTheme.body1),
+              SizedBox(height: 16.0),
+              Align(
+                  alignment: Alignment.centerRight,
+                  child: Wrap(
+                      children:[
+                        FlatButton(
+                          onPressed: (){},
+                          child: const Text('Back'),
+                          color: Colors.white,
+                          textColor: Colors.blue,
+                        ),
+                        RaisedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>PayPage()),
+                            );
+                          },
+                          child: const Text('Check out'),
+                          color: Colors.blue,
+                          textColor: Colors.white,
+                        )
+                      ]
+                  )
+              )
+            ],
           ),
         ),
       ],
     );
   }
 
-  @override
-  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
-    return true;
-  }
-
-  @override
-  FloatingHeaderSnapConfiguration get snapConfiguration => null;
-}
-
-class HeroPage extends StatelessWidget implements HasLayoutGroup {
-  HeroPage({Key key, this.layoutGroup, this.onLayoutToggle}) : super(key: key);
-  final LayoutGroup layoutGroup;
-  final VoidCallback onLayoutToggle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: _scrollView(context),
-    );
-  }
-
-  Widget _scrollView(BuildContext context) {
-    // Use LayoutBuilder to get the hero header size while keeping the image aspect-ratio
-    return Container(
-      child: CustomScrollView(
-        slivers: <Widget>[
-          SliverPersistentHeader(
-            pinned: true,
-            delegate: HeroHeader(
-              layoutGroup: layoutGroup,
-              onLayoutToggle: onLayoutToggle,
-              minExtent: 150.0,
-              maxExtent: 250.0,
-            ),
+  Widget _listItemBuilder(BuildContext context, int index) {
+    return new GestureDetector(
+      onTap: () =>
+          showDialog(
+              context: context,
+              builder: (context) => _dialogBuilder(context, _dishes[index])
           ),
-          SliverGrid(
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200.0,
-              mainAxisSpacing: 0.0,
-              crossAxisSpacing: 0.0,
-              childAspectRatio: 0.75,
-            ),
-            delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                return Container(
-                  alignment: Alignment.center,
-                  padding: _edgeInsetsForIndex(index),
-                  child: Image.asset(
-                    "assets/${_dishes[index].imageUrl}",
-                  ),
-                );
-              },
-              childCount: _dishes.length * 2,
-            ),
-          ),
-        ],
+      child: Container(
+        padding: const EdgeInsets.only(left: 16.0),
+        alignment: Alignment.centerLeft,
+        child: Text(_dishes[index].name,
+            style: Theme
+                .of(context)
+                .textTheme
+                .headline),
       ),
     );
   }
 
-  EdgeInsets _edgeInsetsForIndex(int index) {
-    if (index % 2 == 0) {
-      return EdgeInsets.only(top: 4.0, left: 8.0, right: 4.0, bottom: 4.0);
-    } else {
-      return EdgeInsets.only(top: 4.0, left: 4.0, right: 8.0, bottom: 4.0);
-    }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: new AppBar(
+          title: const Text('Canteens'),
+        ),
+        body: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              expandedHeight: 350.0,
+              pinned: true,
+              floating: false,
+              flexibleSpace: FlexibleSpaceBar(
+                  title: Text("Sliver title"),
+                  background: Image.asset("assets/veg_rice.jpg",fit: BoxFit.cover,)
+              ),
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate((context,index){
+                return Card(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                            padding: EdgeInsets.all(5.0),
+                            decoration: BoxDecoration(
+//                          color: Colors.grey,
+                                borderRadius: BorderRadius.circular(5.0)
+                            ),
+                            width: 100.0,
+                            height: 100.0,
+                            child:InkWell(
+                              onTap: (){
+                                Navigator.of(context).push(new PageRouteBuilder(
+                                    opaque: false,
+                                    barrierDismissible:true,
+                                    pageBuilder: (BuildContext context, _, __) {
+                                      return SimpleDialog(
+                                        contentPadding: EdgeInsets.zero,
+                                        children: [
+                                          Image.asset("assets/${_dishes[index].imageUrl}",fit: BoxFit.fill),
+                                          Padding(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                                              children:[
+                                                Text(_dishes[index].name,
+//                                                  style: localTheme.textTheme.display1,
+                                                ),
+                                                Text(_dishes[index].price,
+
+                                                   ),
+                                                SizedBox(height: 16.0),
+                                                Text(_dishes[index].calories,
+                                                   ),
+                                                SizedBox(height: 16.0),
+                                                Align(
+                                                    alignment: Alignment.centerRight,
+                                                    child: Wrap(
+                                                        children:[
+                                                          FlatButton(
+                                                            onPressed: (){
+                                                              Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(builder: (context) =>HeroPage()),
+                                                              );
+                                                            },
+                                                            child: const Text('Back'),
+                                                            color: Colors.white,
+                                                            textColor: Colors.blue,
+                                                          ),
+                                                          RaisedButton(
+                                                            onPressed: () {
+                                                              Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(builder: (context) =>PayPage()),
+                                                              );
+                                                            },
+                                                            child: const Text('Add to order'),
+                                                            color: Colors.blue,
+                                                            textColor: Colors.white,
+                                                          )
+                                                        ]
+                                                    )
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    }));
+                              },
+                              child: Hero(
+                                tag: "image_$index",
+                                child: Material(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  elevation: 5.0,
+                                  child: Stack(
+                                    fit: StackFit.expand,
+                                    children: <Widget>[
+                                      Image.asset("assets/${_dishes[index].imageUrl}",fit: BoxFit.fill),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            )
+                        ),
+                        Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.all(5.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: <Widget>[
+                                  Text("${_dishes[index].name}",style: TextStyle(fontSize: 16.0),),
+                                  Text("Price: ${_dishes[index].price}    Calories: 400k",style: TextStyle(fontSize: 13.0),),
+
+                                ],
+                              ),
+                            )
+                        ),
+
+                      ],
+                    )
+                );
+              },
+                  childCount: itemData.length
+              ),
+            )
+          ],
+        )
+    );
   }
 }

@@ -1,6 +1,5 @@
-
 import 'dart:async';
-
+import 'package:tech_fest_app/getfood/SelectDish1.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
@@ -126,12 +125,13 @@ class _PayPageState extends State<PayPage> {
     super.dispose();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       key: _scaffoldKey,
       appBar: new AppBar(
-        title: const Text('Plugin example app'),
+        title: const Text('Check Out'),
       ),
       body: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -140,20 +140,47 @@ class _PayPageState extends State<PayPage> {
             padding: const EdgeInsets.all(24.0),
             child: new TextField(controller: _urlCtrl),
           ),
-          new RaisedButton(
-            onPressed: () {
-              flutterWebviewPlugin.launch(selectedUrl,
-                  rect: new Rect.fromLTWH(
-                      0.0, 0.0, MediaQuery
-                      .of(context)
-                      .size
-                      .width, 600.0),
-                  userAgent: kAndroidUserAgent);
-            },
-            child: const Text('Open Webview (rect)'),
-          ),
-        ],
-      ),
+          Align(
+              child: Wrap(
+                  children:[
+                    RaisedButton(
+                      onPressed: () {
+                        flutterWebviewPlugin.launch(selectedUrl,
+                            rect: new Rect.fromLTWH(
+                                0, 30, MediaQuery
+                                .of(context)
+                                .size
+                                .width, 600.0),
+                            userAgent: kAndroidUserAgent);
+                      },
+                      child: const Text('Check out'),
+                      color: Colors.blue,
+                      textColor: Colors.white,
+                    ),
+                    ]
+                    )
+                    ),
+
+      new Container(
+      margin: const EdgeInsets.only(top: 350.0),
+      child : new RaisedButton(
+      onPressed:(){
+      setState(() {
+      _history.clear();
+      });
+      flutterWebviewPlugin.close();
+      Navigator.push(context,
+      MaterialPageRoute(builder:
+      (context) => HeroPage()),
+      )
+      ;},
+      child: const Text('Cancel'),
+      color: Colors.white,
+      textColor: Colors.blue,
+    ),
+    ),
+    ],
+    ),
     );
   }
 }
