@@ -4,7 +4,6 @@ import 'package:tech_fest_app/auth/auth.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:tech_fest_app/todolistv2/data_provider.dart';
 import 'package:tech_fest_app/todolistv2/model.dart';
-import 'package:tech_fest_app/todolistv2/projects_screen.dart';
 import 'package:redux/redux.dart';
 
 final store = Store<CategoryState>(stateReducer,
