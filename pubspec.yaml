@@ -16,6 +16,7 @@ dependencies:
   firebase_auth: ^0.6.6
   cloud_firestore:
   url_launcher: ^3.0.3
+  mailer:
   flutter:
     sdk: flutter
 

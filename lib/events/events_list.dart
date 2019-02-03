@@ -8,9 +8,9 @@ import 'package:tech_fest_app/events/event_card_delete.dart';
 class EventsList extends StatefulWidget{
   @override
   _EventsListState createState() => _EventsListState();
-  EventsList({this.auth, this.userId});
+  EventsList({this.auth, this.userId, this.email});
   final BaseAuth auth;
-  final String userId;
+  final String userId, email;
 }
 
 class _EventsListState extends State<EventsList>{
@@ -39,7 +39,7 @@ class _EventsListState extends State<EventsList>{
                   stream: Firestore.instance.collection("events_data").snapshots(),
                   builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
                     if(!snapshot.hasData) return CircularProgressIndicator();
-                    return FirestoreListView(documents: snapshot.data.documents, auth: widget.auth, userId: widget.userId,);
+                    return FirestoreListView(documents: snapshot.data.documents, auth: widget.auth, userId: widget.userId, email: widget.email,);
                   })
           ),
         )
@@ -50,8 +50,8 @@ class _EventsListState extends State<EventsList>{
 class FirestoreListView extends StatelessWidget {
   final List<DocumentSnapshot> documents;
   final BaseAuth auth;
-  final String userId;
-  FirestoreListView({this.documents, this.auth, this.userId});
+  final String userId, email;
+  FirestoreListView({this.documents, this.auth, this.userId, this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +77,8 @@ class FirestoreListView extends StatelessWidget {
           String   eventPrice = documents[index].data["price"].toString();
           String   eventLocation = documents[index].data["location"].toString();
           String eventCreator = documents[index].data["creator"].toString();
+          String eventTime = documents[index].data["time"].toString();
+          String eventLink = documents[index].data["link"].toString();
 
           if(eventCreator == userId){
             return Container(
@@ -91,6 +93,9 @@ class FirestoreListView extends StatelessWidget {
                 eventCreator: eventCreator,
                 deleteFunc: _deleteEvent,
                 index: index,
+                eventTime: eventTime,
+                eventLink: eventLink,
+                email: email
               ),
             );
           } else {
@@ -104,6 +109,9 @@ class FirestoreListView extends StatelessWidget {
                 eventPrice: eventPrice,
                 eventLocation: eventLocation,
                 eventCreator: eventCreator,
+                eventTime: eventTime,
+                  eventLink: eventLink,
+                email: email
               ),
             );
           }

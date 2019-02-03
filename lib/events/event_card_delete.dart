@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server/gmail.dart';
 
 class EventsCardDelete extends StatefulWidget {
   @override
@@ -11,7 +14,10 @@ class EventsCardDelete extends StatefulWidget {
       eventImage,
       eventPrice,
       eventLocation,
-      eventCreator;
+      eventCreator,
+  eventLink,
+  eventTime,
+  email;
   Function deleteFunc;
   int index;
   EventsCardDelete({
@@ -23,12 +29,40 @@ class EventsCardDelete extends StatefulWidget {
     this.eventPrice,
     this.eventLocation,
     this.eventCreator,
+    this.eventTime,
     this.deleteFunc,
-    this.index
+    this.eventLink,
+    this.index,
+    this.email
   });
 }
 
 class _EventsCardDeleteState extends State<EventsCardDelete> {
+
+  _launchURL() async {
+    String url = widget.eventLink;
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  static String password = 'intuition2018';
+  static String username = "blinkceptionntu@gmail.com";
+
+  final smtpServer = gmail(username, password);
+
+  void _sendReminder() async {
+    final message = new Message()
+      ..from = new Address("blinkceptionntu@gmail.com", 'Blinkception')
+      ..recipients.add(widget.email)
+      ..subject = 'Reminder for your upcoming event: ${new DateTime.now()}'
+      ..text = 'This is an automated message for you:'
+      ..html = "<h1>Event Name</h1>\n<p>${widget.eventName}</p>\n<h1>Event Date</h1>\n<p>${widget.eventDate}</p>\n<h1>Event Time</h1>\n<p>${widget.eventTime}</p>\n<h1>Event Location</h1>\n<p>${widget.eventLocation}</p>\n";
+
+    final sendReports = await send(message, smtpServer);
+  }
 
   void _showDeleteDialog() {
     showDialog(
@@ -95,6 +129,7 @@ class _EventsCardDeleteState extends State<EventsCardDelete> {
                   ],
                 ),
               ),
+
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: new Row(
@@ -110,6 +145,15 @@ class _EventsCardDeleteState extends State<EventsCardDelete> {
                   children: <Widget>[
                     new Icon(Icons.attach_money),
                     new Text(widget.eventPrice)
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: new Row(
+                  children: <Widget>[
+                    new Icon(Icons.access_time),
+                    new Text(widget.eventTime)
                   ],
                 ),
               ),
@@ -137,7 +181,7 @@ class _EventsCardDeleteState extends State<EventsCardDelete> {
                         color: Colors.blue,
                         textColor: Colors.black87,
                         onPressed: () {
-                          null;
+                          _launchURL();
                         }),
                   ),
                 ),
@@ -165,14 +209,27 @@ class _EventsCardDeleteState extends State<EventsCardDelete> {
               child: new Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                        child: new Text(
-                      widget.eventDate,
-                      style:
-                          new TextStyle(fontSize: 22.0, color: Colors.red[600]),
-                    )),
+                  Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                            child: new Text(
+                          widget.eventDate,
+                          style:
+                              new TextStyle(fontSize: 22.0, color: Colors.red[600]),
+                        )),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                        child: Container(
+                            child: new Text(
+                              widget.eventTime,
+                              style:
+                              new TextStyle(fontSize: 15.0, color: Colors.black87),
+                            )),
+                      ),
+                    ],
                   ),
                   new Column(
                     mainAxisSize: MainAxisSize.min,
@@ -243,6 +300,14 @@ class _EventsCardDeleteState extends State<EventsCardDelete> {
               textColor: Colors.black87,
               onPressed: _showDeleteDialog),
         ),
+        Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: new Align(
+            alignment: Alignment.topRight,
+            child: new RaisedButton(child: new Icon(Icons.notifications),
+              onPressed: _sendReminder,
+              shape: CircleBorder(),),),
+        )
       ])),
     );
   }

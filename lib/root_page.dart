@@ -20,6 +20,7 @@ enum AuthStatus {
 class _RootPageState extends State<RootPage> {
 
   String globalUser = "";
+  String globalEmail = "";
 
   AuthStatus authStatus = AuthStatus.notSignedIn;
 
@@ -29,6 +30,11 @@ class _RootPageState extends State<RootPage> {
       setState(() {
         authStatus = userId != null ? AuthStatus.signedIn : AuthStatus.notSignedIn;
         globalUser = userId;
+      });
+    });
+    widget.auth.currentUserEmail().then((email) {
+      setState((){
+        globalEmail = email;
       });
     });
   }
@@ -53,6 +59,7 @@ class _RootPageState extends State<RootPage> {
             auth: widget.auth,
             onSignOut: () => _updateAuthStatus(AuthStatus.notSignedIn),
             userId: globalUser,
+          email: globalEmail
         );
     }
   }

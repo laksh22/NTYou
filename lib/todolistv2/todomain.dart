@@ -5,50 +5,52 @@ import 'package:tech_fest_app/todolistv2/model.dart';
 import 'package:tech_fest_app/todolistv2/projects_screen.dart';
 import 'package:redux/redux.dart';
 
-// void main() {
-//   final store = Store<CategoryState>(stateReducer,
-//       initialState: CategoryState([
-//         Category(0, Icons.person, Colors.blue, "Personal", [
-//           Task(0, "Task", false),
-//         ]),
-//         Category(1, Icons.content_paste, Colors.orange, "Work", [])
-//       ]));
-//   runApp(FlutterReduxApp(store: store));
-// }
+void main() {
+  final store = Store<CategoryState>(stateReducer,
+      initialState: CategoryState([
+        Category(0, Icons.person, Colors.blue, "CZ1007 - Data Structures", [
+          Task(0, "Sumbit week 3 lams", false),
+           Task(0, "Sumbit assignment 1 before 9 Feb", false),
+        ]),
+        Category(1, Icons.content_paste, Colors.orange, "Work", [])
+      ]));
+  runApp(FlutterReduxApp(store: store));
+}
 
-// class FlutterReduxApp extends StatelessWidget {
-//   final Store<CategoryState> store;
-//   const FlutterReduxApp({Key key, this.store}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return StoreProvider<CategoryState>(
-//       child: MaterialApp(
-//         title: 'Flutter Demo',
-//         theme: ThemeData(
-//             primarySwatch: Colors.blue,
-//             textTheme: TextTheme(
-//               body1: TextStyle(color: Colors.white, fontSize: 28.0),
-//               body2: TextStyle(color: Colors.white54, fontSize: 14.0),
-//               display1: TextStyle(color: Colors.black87, fontSize: 36.0),
-//               caption: TextStyle(
-//                   color: Colors.white,
-//                   fontSize: 12.0,
-//                   fontWeight: FontWeight.bold),
-//               subhead: TextStyle(color: Colors.black54, fontSize: 12.0),
-//             )),
-//         home: MyHomePageToDo(title: 'Flutter Demo Home Page'),
-//       ),
-//       store: store,
-//     );
-//   }
-// }
+class FlutterReduxApp extends StatelessWidget {
+  final Store<CategoryState> store;
+  const FlutterReduxApp({Key key, this.store}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return StoreProvider<CategoryState>(
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+            primarySwatch: Colors.blue,
+            textTheme: TextTheme(
+              body1: TextStyle(color: Colors.white, fontSize: 28.0),
+              body2: TextStyle(color: Colors.white54, fontSize: 14.0),
+              display1: TextStyle(color: Colors.black87, fontSize: 36.0),
+              caption: TextStyle(
+                  color: Colors.white,
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.bold),
+              subhead: TextStyle(color: Colors.black54, fontSize: 12.0),
+            )),
+        home: MyHomePageToDo(title: 'Flutter Demo Home Page'),
+      ),
+      store: store,
+    );
+  }
+}
 
 class MyHomePageToDo extends StatefulWidget {
   final store = Store<CategoryState>(stateReducer,
        initialState: CategoryState([
-         Category(0, Icons.person, Colors.blue, "Personal", [
-           Task(0, "Task", false),
+         Category(0, Icons.person, Colors.blue, "CZ1007 - Data Structures", [
+           Task(0, "Sumbit week 3 lams", false),
+           Task(0, "Sumbit assignment 1 before 9 Feb", false),
          ]),
          Category(1, Icons.content_paste, Colors.orange, "Work", [])
        ]));

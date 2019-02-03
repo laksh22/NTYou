@@ -87,7 +87,7 @@ class _ProjectScreenState extends State<ProjectsScreen> {
                 Padding(
                   padding: EdgeInsets.only(left: horizontalPadding),
                   child: Text(
-                    "today | 23 september".toUpperCase(),
+                    "today | 3 febuary".toUpperCase(),
                     style: Theme.of(context).textTheme.caption,
                   ),
                 ),

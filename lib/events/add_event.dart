@@ -13,7 +13,7 @@ class AddEvent extends StatefulWidget {
 class _AddEventState extends State<AddEvent> {
   final _formKey = GlobalKey<FormState>();
 
-  String name, holder, date, price, location, image, description;
+  String name, holder, date, price, location, image, description, time, link;
 
   bool validateAndSave() {
     final form = _formKey.currentState;
@@ -39,7 +39,9 @@ class _AddEventState extends State<AddEvent> {
           "image": image,
           "location": location,
           "name": name,
-          "price": price
+          "price": price,
+          "time": time,
+          "link": link
         });
       });
       Navigator.pop(context);
@@ -119,6 +121,23 @@ class _AddEventState extends State<AddEvent> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
+                          key: new Key('time'),
+                          decoration: InputDecoration(
+                            hintText: 'Time',
+                            contentPadding:
+                            EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(32.0)),
+                          ),
+                          autocorrect: false,
+                          validator: (val) =>
+                          val.isEmpty ? 'Time can\'t be empty.' : null,
+                          onSaved: (val) => time = val,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
                           key: new Key('price'),
                           decoration: InputDecoration(
                             hintText: 'Price',
@@ -166,6 +185,24 @@ class _AddEventState extends State<AddEvent> {
                               ? 'Image address can\'t be empty.'
                               : null,
                           onSaved: (val) => image = val,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          key: new Key('link'),
+                          decoration: InputDecoration(
+                            hintText: 'Registration Link',
+                            contentPadding:
+                            EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(32.0)),
+                          ),
+                          autocorrect: false,
+                          validator: (val) => val.isEmpty
+                              ? 'Registration address can\'t be empty.'
+                              : null,
+                          onSaved: (val) => link = val,
                         ),
                       ),
                       Padding(
