@@ -10,7 +10,7 @@ void main() {
       initialState: CategoryState([
         Category(0, Icons.person, Colors.blue, "CZ1007 - Data Structures", [
           Task(0, "Sumbit week 3 lams", false),
-           Task(0, "Sumbit assignment 1 before 9 Feb", false),
+           Task(0, "assignment 1", false),
         ]),
         Category(1, Icons.content_paste, Colors.orange, "Work", [])
       ]));
@@ -50,7 +50,7 @@ class MyHomePageToDo extends StatefulWidget {
        initialState: CategoryState([
          Category(0, Icons.person, Colors.blue, "CZ1007 - Data Structures", [
            Task(0, "Sumbit week 3 lams", false),
-           Task(0, "Sumbit assignment 1 before 9 Feb", false),
+           Task(1, "assignment 1", false), 
          ]),
          Category(1, Icons.content_paste, Colors.orange, "Work", [])
        ]));
