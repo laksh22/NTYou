@@ -33,14 +33,17 @@ class TodoItem extends StatelessWidget {
               SizedBox(
                 width: 12.0,
               ),
-              Text(
-                task.name,
-                style: TextStyle(
-                  color: task.done ? Colors.black38 : Colors.black87,
-                  fontSize: 18.0,
-                  decoration: task.done
-                      ? TextDecoration.lineThrough
-                      : TextDecoration.none,
+
+              Flexible( 
+                child: Text(
+                        task.name,
+                  style: TextStyle(
+                    color: task.done ? Colors.black38 : Colors.black87,
+                    fontSize: 18.0,
+                    decoration: task.done
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none,
+                  ),
                 ),
               ),
             ],
