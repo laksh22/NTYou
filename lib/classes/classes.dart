@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import  'my_flutter_app_icons.dart';
+import 'package:http/http.dart' as http;
 
 
 void main() {
@@ -52,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: new Center(
                   // Use future builder and DefaultAssetBundle to load the local JSON file
                   child: new FutureBuilder(
-                      future: DefaultAssetBundle.of(context).loadString('data_repo/structuredData.json'),//http.get("https://www.jasonbase.com/things/jYBa/")
+                      future: DefaultAssetBundle.of(context).loadString('data_repo/structuredDataV2.json'),//http.get("https://www.jasonbase.com/things/jYBa/")
                       builder: (context, snapshot) {
                         // Decode the JSON 
                         var new_data =  json.decode(snapshot.data.toString());
@@ -61,15 +62,19 @@ class _MyHomePageState extends State<MyHomePage> {
                           itemBuilder: (BuildContext context, int index) {
                             if(new_data!=null){print(new_data[index]['course']);}
                             // double time = int.parse(new_data[index]['time'][0])/100;
-                            String timeStr=new_data[index]['time'][0];
+                            String timeStr=new_data[index]['time'][0];                            
                             String day=new_data[index]['day'][0];
+                            String day2='-1';
+                            if(new_data[index]['day'].length==2){
+                              String day2=new_data[index]['day'][1];
+                            }
                             String s1=timeStr.split('-')[0];
                             String s2=timeStr.split('-')[1];
                             double r1=int.parse(s1)/100;
                             double r2=int.parse(s2)/100;
                             // r1<= _sliderValue && _sliderValue<=r2
                             // print(_sliderValue);
-                            if (day==dayButton &&(r1<= _sliderValue && _sliderValue<=r2)){
+                            if (day==dayButton &&(r1<= _sliderValue && _sliderValue<=r2)&&(new_data[index]['day'].length==1)){
                               return new Card(
                                 child: new Column(
                                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -172,6 +177,242 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               );
                            }//end of if
+                           else if(day==dayButton &&(r1<= _sliderValue && _sliderValue<=r2)&&(new_data[index]['day'].length==2)){
+                             return new Card(
+                                child: new Column(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: <Widget>[
+                                    // first column element
+                                    new Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        new Padding(
+                                          padding: EdgeInsets.fromLTRB(20, 5, 0, 10),
+                                          child:Container(
+                                              height: 30.0,
+                                              width: 50.0,
+                                              alignment: Alignment.center,                                          
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(20.0),
+                                                ),
+                                                  color: Colors.green,
+                                              ),
+                                              child: Text('LEC',style: TextStyle(fontSize: 17,)),
+                                            ),
+                                        ),
+                                        new Expanded(
+                                          child: new Center(
+                                            child:Text(
+                                                new_data[index]['module'].replaceAll('*','').replaceAll('#',''),
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16,
+                                                  
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              )
+                                          ),
+                                        ),
+                                        
+                                      ]
+                                    ),
+                                    //second column element
+                                    new Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        //first row element
+                                        new Tab(
+                                            icon:Icon(Icons.location_on),
+                                        ),                                        
+                                        //second row element
+                                        new Text(
+                                          new_data[index]['venue'][0],
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.grey,
+                                          ),
+                                        )
+                                      ]
+                                      ),
+                                      //third column element
+                                      new Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        new Tab(
+                                            icon:Icon(Icons.access_time),
+                                        ),
+                                        new Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                          child: new Text(
+                                            new_data[index]['time'][0],
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                            ),),
+                                        ),
+                                        
+                                        
+                                        new Padding(
+                                          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                          child:new Tab(
+                                            icon:Icon(Icons.calendar_today),
+                                          ),
+                                        ),
+                                        
+
+                                        new Text(
+                                          dayDict[new_data[index]['day'][0]],
+                                          style:TextStyle(
+                                            fontSize: 16,
+                                          ))
+                                        
+
+                                      ]
+
+                                      ),
+                                      new Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                          Expanded(
+                                            child: Center(child:new Text(
+                                              'Also happens on '+ dayDict[new_data[index]['day'][1]]+', time '+new_data[index]['time'][1] + ' at '+ new_data[index]['venue'][1],
+                                              style:TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.grey
+                                              ))),
+                                          )
+                                        ]
+                                      )
+                                  ],
+                                ),
+                              );
+                           }
+                           else if (day2==dayButton &&(r1<= _sliderValue && _sliderValue<=r2)&&(new_data[index]['day'].length==2)){
+                             return new Card(
+                                child: new Column(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: <Widget>[
+                                    // first column element
+                                    new Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        new Padding(
+                                          padding: EdgeInsets.fromLTRB(20, 5, 0, 10),
+                                          child:Container(
+                                              height: 30.0,
+                                              width: 50.0,
+                                              alignment: Alignment.center,                                          
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(20.0),
+                                                ),
+                                                  color: Colors.green,
+                                              ),
+                                              child: Text('LEC',style: TextStyle(fontSize: 17,)),
+                                            ),
+                                        ),
+                                        new Expanded(
+                                          child: new Center(
+                                            child:Text(
+                                                new_data[index]['module'].replaceAll('*','').replaceAll('#',''),
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16,
+                                                  
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              )
+                                          ),
+                                        ),
+                                        
+                                      ]
+                                    ),
+                                    //second column element
+                                    new Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        //first row element
+                                        new Tab(
+                                            icon:Icon(Icons.location_on),
+                                        ),                                        
+                                        //second row element
+                                        new Text(
+                                          new_data[index]['venue'][1],
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.grey,
+                                          ),
+                                        )
+                                      ]
+                                      ),
+                                      //third column element
+                                      new Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        new Tab(
+                                            icon:Icon(Icons.access_time),
+                                        ),
+                                        new Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                          child: new Text(
+                                            new_data[index]['time'][1],
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                            ),),
+                                        ),
+                                        
+                                        
+                                        new Padding(
+                                          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                          child:new Tab(
+                                            icon:Icon(Icons.calendar_today),
+                                          ),
+                                        ),
+                                        
+
+                                        new Text(
+                                          dayDict[new_data[index]['day'][1]],
+                                          style:TextStyle(
+                                            fontSize: 16,
+                                          ))
+                                        
+
+                                      ]
+
+                                      ),
+                                      new Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                          Expanded(
+                                             child: Center(child:new Text(
+                                              'Also happens on '+ dayDict[new_data[index]['day'][0]]+', time '+new_data[index]['time'][0] + ' at '+ new_data[index]['venue'][0],
+                                              style:TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.grey
+                                              ))),
+                                          )
+                                        ]
+                                      )
+                                  ],
+                                ),
+                              );
+                           }
                            else {
                              return new Container();
                            }

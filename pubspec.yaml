@@ -70,7 +70,7 @@ flutter:
   #  - images/a_dot_ham.jpeg
   assets:
     - img/ntu.png
-    - data_repo/structuredData.json
+    - data_repo/structuredDataV2.json
     - assets/images/profile_image.png
     - assets/201205-xl-beef-fried-rice.jpg
     - assets/92122816-chicken-fillet-with-fried-rice-on-white-plate-.jpg
