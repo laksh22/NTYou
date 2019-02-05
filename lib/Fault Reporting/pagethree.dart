@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_multiple_image_picker/flutter_multiple_image_picker.dart';
 import "package:mailer/mailer.dart";
 import 'package:mailer/smtp_server.dart';
+import 'package:tech_fest_app/auth/auth_details.dart';
 import 'package:tech_fest_app/home.dart';
 import 'dart:io';
 import 'globals.dart' as globals;
@@ -22,7 +23,9 @@ class PageThreeState extends State<PageThree> {
 
   final formKey = GlobalKey<FormState>();
 
-  String email = "atrikdas@gmail.com";
+  static AuthDetails authDetails = new AuthDetails();
+
+  static String email = authDetails.getReportingEmail();
 
   BuildContext context;
   String _platformMessage = 'No Error';

@@ -73,3 +73,6 @@ build/
 # Keystore
 my-release-key.keystore
 key.properties
+
+# Auth
+auth_details.dart

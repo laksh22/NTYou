@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server/gmail.dart';
+import "package:tech_fest_app/auth/auth_details.dart";
 
 class EventsCard extends StatefulWidget {
   @override
@@ -42,8 +43,11 @@ class _EventsCardState extends State<EventsCard> {
     }
   }
 
-  static String password = 'intuition2018';
-  static String username = "blinkceptionntu@gmail.com";
+  static AuthDetails authDetails = new AuthDetails();
+
+  static String password = authDetails.getSenderPassword();
+
+  static String username = authDetails.getSenderEmail();
 
   final smtpServer = gmail(username, password);
 
@@ -246,7 +250,7 @@ class _EventsCardState extends State<EventsCard> {
                 padding: const EdgeInsets.only(top: 8.0),
                 child: new Align(
                   alignment: Alignment.topRight,
-                  child: new RaisedButton(child: new Icon(Icons.notifications),
+                  child: new RaisedButton(child: new Icon(Icons.notifications, color: Colors.white,),
                       onPressed: _sendReminder,
                   shape: CircleBorder(),),),
               )
