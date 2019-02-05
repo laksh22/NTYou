@@ -119,7 +119,7 @@ class Home extends StatelessWidget {
                       new Padding(
                         padding: const EdgeInsets.only(bottom:10.0),
                       child: Text(
-                        'Welcome to NTU',
+                        'Welcome to NTYou!',
                         style: new TextStyle(fontSize: 32.0),
                       )),
                       new Container(
