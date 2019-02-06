@@ -22,7 +22,7 @@ class PageTwoState extends State<PageTwo> {
   final formKey = GlobalKey<FormState>();
 
   Hall selectedHall;
-  List<Hall> halls = <Hall>[const Hall('Binjai Hall'), const Hall('Tamarind Hall'), const Hall('Hall 13'), const Hall('Hall 1')];
+  List<Hall> halls = <Hall>[const Hall('Hall 1'),const Hall('Hall 2'),const Hall('Hall 3'),const Hall('Hall 4'),const Hall('Hall 5'),const Hall('Hall 6'),const Hall('Hall 7'),const Hall('Hall 8'),const Hall('Hall 9'),const Hall('Hall 10'),const Hall('Hall 11'),const Hall('Hall 12'),const Hall('Hall 13'),const Hall('Hall 14'),const Hall('Hall 15'),const Hall('Hall 16'),const Hall('Crescent Hall'), const Hall('Pioneer Hall'), const Hall('Binjai Hall'), const Hall('Tanjong Hall'),const Hall('Banyan Hall'),const Hall('Saraca Hall'),const Hall('Tamarind Hall'),const Hall('Meranti Hall'),];
 
   int groupValue;
   bool _visible = false;
@@ -50,45 +50,45 @@ class PageTwoState extends State<PageTwo> {
                 Column(
                   children: <Widget>[
                     new Opacity(
-                      opacity: _visible ? 1.0 : 0.0,
-                      child: Column(
-                      children: <Widget>[
-                        new Padding(padding: const EdgeInsets.only(bottom: 32.0, top: 32.0),
-                          child: Text("Which hall are you located in?", style: new TextStyle(fontSize: 20.0),
-                            textAlign: TextAlign.center, ),
-                        ),
-              new FormField<String>(
-                    builder: (FormFieldState<String> state) {
-                      return InputDecorator(
-                        decoration: InputDecoration(
-                          icon: const Icon(Icons.home),
-                          labelText: 'Halls',
-                        ),
-                        child: new DropdownButtonHideUnderline(
-                          child: new DropdownButton<Hall>(
-                            hint: new Text("Select a Hall"),
-                            value: selectedHall,
-                            onChanged: (Hall newValue) {
-                              setState(() {
-                                selectedHall = newValue;
-                              });
-                            },
-                            items: halls.map((Hall hall) {
-                              return new DropdownMenuItem<Hall>(
-                                value: hall,
-                                child: new Text(
-                                  hall.name,
-                                  style: new TextStyle(color: Colors.black),
-                                ),
-                              );
-                            }).toList(),
-                          ),
-                        ),
-                      );
-                    },
-              ),
-                      ]
-                      )
+                        opacity: _visible ? 1.0 : 0.0,
+                        child: Column(
+                            children: <Widget>[
+                              new Padding(padding: const EdgeInsets.only(bottom: 32.0, top: 32.0),
+                                child: Text("Which hall are you located in?", style: new TextStyle(fontSize: 20.0),
+                                  textAlign: TextAlign.center, ),
+                              ),
+                              new FormField<String>(
+                                builder: (FormFieldState<String> state) {
+                                  return InputDecorator(
+                                    decoration: InputDecoration(
+                                      icon: const Icon(Icons.home),
+                                      labelText: 'Halls',
+                                    ),
+                                    child: new DropdownButtonHideUnderline(
+                                      child: new DropdownButton<Hall>(
+                                        hint: new Text("Select a Hall"),
+                                        value: selectedHall,
+                                        onChanged: (Hall newValue) {
+                                          setState(() {
+                                            selectedHall = newValue;
+                                          });
+                                        },
+                                        items: halls.map((Hall hall) {
+                                          return new DropdownMenuItem<Hall>(
+                                            value: hall,
+                                            child: new Text(
+                                              hall.name,
+                                              style: new TextStyle(color: Colors.black),
+                                            ),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ]
+                        )
                     ),
                   ],
                 ),
@@ -97,7 +97,9 @@ class PageTwoState extends State<PageTwo> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: RaisedButton(onPressed: next, child: Text("Next"),),
+                      child: RaisedButton(onPressed: next, child: Text("Next", style: new TextStyle(color: Colors.white)),shape: new RoundedRectangleBorder(
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(20.0 / 2))),),
                     )
                   ],
                 )
