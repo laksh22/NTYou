@@ -8,9 +8,9 @@ class PageOne extends StatefulWidget {
 }
 
 class Issue {
-   Issue(this.name);
+  Issue(this.name);
 
-   String name = "Other";
+  String name = "Other";
 }
 
 
@@ -28,8 +28,8 @@ class PageOneState extends State<PageOne> {
 
     return Scaffold(
       appBar: new AppBar(title: new Text("Fault Reporting"),),
-      body: SingleChildScrollView(
-        child: Center(
+      body: Center(
+        child: SingleChildScrollView(
           child: Form(
             key: this.formKey,
             child: Padding(
@@ -38,9 +38,9 @@ class PageOneState extends State<PageOne> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   new Padding(padding: const EdgeInsets.only(bottom: 32.0),
-                  child: Text("Please fill in your personal details", style: new TextStyle(fontSize: 20.0),
-              textAlign: TextAlign.center, ),
-          ),
+                    child: Text("Please fill in your personal details", style: new TextStyle(fontSize: 20.0),
+                      textAlign: TextAlign.center, ),
+                  ),
                   new TextFormField(
                     decoration: const InputDecoration(
                       icon: const Icon(Icons.person),
@@ -102,7 +102,9 @@ class PageOneState extends State<PageOne> {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: RaisedButton(onPressed: next, child: Text("Next"),),
+                        child: RaisedButton(onPressed: next, child: Text("Next", style: new TextStyle(color: Colors.white)),shape: new RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(20.0 / 2))),),
                       )
                     ],
                   )],
@@ -119,7 +121,7 @@ class PageOneState extends State<PageOne> {
       print(yourname);
       print(number);
       if(selectedIssue == null){
-         Navigator.push(
+        Navigator.push(
           context,
           MaterialPageRoute(builder: (context) =>
               PageTwo(
