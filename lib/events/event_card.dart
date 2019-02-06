@@ -3,7 +3,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server/gmail.dart';
 import "package:tech_fest_app/auth/auth_details.dart";
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class EventsCard extends StatefulWidget {
   @override
@@ -34,29 +33,6 @@ class EventsCard extends StatefulWidget {
 }
 
 class _EventsCardState extends State<EventsCard> {
-
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
-
-  @override
-  void initState() {
-    super.initState();
-    flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
-    var android = new AndroidInitializationSettings('@mipmap/ic_launcher');
-    var iOS = new IOSInitializationSettings();
-    var initSetttings = new InitializationSettings(android, iOS);
-    flutterLocalNotificationsPlugin.initialize(initSetttings, onSelectNotification: onSelectNotification);
-  }
-
-  Future onSelectNotification(String payload) {
-    debugPrint("payload : $payload");
-    showDialog(
-      context: context,
-      builder: (_) => new AlertDialog(
-        title: new Text('Notification'),
-        content: new Text('$payload'),
-      ),
-    );
-  }
 
   static AuthDetails authDetails = new AuthDetails();
   static String password = authDetails.getSenderPassword();
@@ -280,17 +256,5 @@ class _EventsCardState extends State<EventsCard> {
             ],
           )),
     );
-  }
-
-  showNotification() async {
-    var android = new AndroidNotificationDetails(
-        'channel id', 'channel NAME', 'CHANNEL DESCRIPTION',
-        priority: Priority.High,importance: Importance.Max
-    );
-    var iOS = new IOSNotificationDetails();
-    var platform = new NotificationDetails(android, iOS);
-    await flutterLocalNotificationsPlugin.show(
-        0, 'New Video is out', 'Flutter Local Notification', platform,
-        payload: 'Nitish Kumar Singh is part time Youtuber');
   }
 }

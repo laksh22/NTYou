@@ -14,9 +14,8 @@ environment:
 
 dependencies:
   firebase_auth:
-  cloud_firestore: 0.7.3
+  cloud_firestore:
   url_launcher: ^3.0.3
-  flutter_local_notifications:
   mailer:
   flutter:
     sdk: flutter
