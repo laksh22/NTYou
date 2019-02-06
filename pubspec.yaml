@@ -13,9 +13,10 @@ environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
 
 dependencies:
-  firebase_auth: ^0.6.6
-  cloud_firestore:
+  firebase_auth:
+  cloud_firestore: 0.7.3
   url_launcher: ^3.0.3
+  flutter_local_notifications:
   mailer:
   flutter:
     sdk: flutter

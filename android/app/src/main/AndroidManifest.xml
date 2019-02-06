@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
@@ -18,7 +20,7 @@
          FlutterApplication and put your custom class here. -->
     <application tools:replace="icon, label"
         android:name="io.flutter.app.FlutterApplication"
-        android:label="NTYou"
+        android:label="NTYou!"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

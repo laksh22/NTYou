@@ -9,8 +9,8 @@ import 'package:redux/redux.dart';
 final store = Store<CategoryState>(stateReducer,
     initialState: CategoryState([
       Category(0, Icons.person, Colors.blue, "CZ1007 - Data Structures", [
-        Task(0, "week 3 lams", false),
-        Task(1, "assignment 1", false),
+        Task(0, "Week 3 LAMS", false),
+        Task(1, "Assignment 1", false),
       ]),
       Category(1, Icons.content_paste, Colors.blue[100], "Work", [])
     ]));
@@ -25,7 +25,7 @@ void main() => runApp(FlutterReduxApp(store: store));
    Widget build(BuildContext context) {
      return StoreProvider<CategoryState>(
        child: MaterialApp(
-         title: 'Tech Fest',
+         title: 'NTYou!',
          theme: ThemeData(
              primarySwatch: Colors.blue,
              primaryColor: Colors.lightBlue[700],

@@ -3,6 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server/gmail.dart';
 import "package:tech_fest_app/auth/auth_details.dart";
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class EventsCard extends StatefulWidget {
   @override
@@ -34,6 +35,34 @@ class EventsCard extends StatefulWidget {
 
 class _EventsCardState extends State<EventsCard> {
 
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+
+  @override
+  void initState() {
+    super.initState();
+    flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
+    var android = new AndroidInitializationSettings('@mipmap/ic_launcher');
+    var iOS = new IOSInitializationSettings();
+    var initSetttings = new InitializationSettings(android, iOS);
+    flutterLocalNotificationsPlugin.initialize(initSetttings, onSelectNotification: onSelectNotification);
+  }
+
+  Future onSelectNotification(String payload) {
+    debugPrint("payload : $payload");
+    showDialog(
+      context: context,
+      builder: (_) => new AlertDialog(
+        title: new Text('Notification'),
+        content: new Text('$payload'),
+      ),
+    );
+  }
+
+  static AuthDetails authDetails = new AuthDetails();
+  static String password = authDetails.getSenderPassword();
+  static String username = authDetails.getSenderEmail();
+  final smtpServer = gmail(username, password);
+
   _launchURL() async {
     String url = widget.eventLink;
     if (await canLaunch(url)) {
@@ -41,27 +70,6 @@ class _EventsCardState extends State<EventsCard> {
     } else {
       throw 'Could not launch $url';
     }
-  }
-
-  static AuthDetails authDetails = new AuthDetails();
-
-  static String password = authDetails.getSenderPassword();
-
-  static String username = authDetails.getSenderEmail();
-
-  final smtpServer = gmail(username, password);
-
-  void _sendReminder() async {
-    final message = new Message()
-      ..from = new Address("blinkceptionntu@gmail.com", 'Blinkception')
-      ..recipients.add(widget.email)
-      ..subject = 'Reminder for your upcoming event: ${new DateTime.now()}'
-      ..text = 'This is an automated message for you:'
-      ..html = "<h1>Event Name</h1>\n<p>${widget.eventName}</p>\n<h1>Event Date</h1>\n<p>${widget.eventDate}</p>\n<h1>Event Time</h1>\n<p>${widget.eventTime}</p>\n<h1>Event Location</h1>\n<p>${widget.eventLocation}</p>\n";
-
-    final sendReports = await send(message, smtpServer);
-    print(widget.email);
-    print(sendReports.toString());
   }
 
   void _showDialog() {
@@ -147,6 +155,20 @@ class _EventsCardState extends State<EventsCard> {
             ],
           ),
         ));
+  }
+
+  void _sendReminder() async {
+
+    final message = new Message()
+      ..from = new Address("blinkceptionntu@gmail.com", 'Blinkception')
+      ..recipients.add(widget.email)
+      ..subject = 'Reminder for your upcoming event: ${new DateTime.now()}'
+      ..text = 'This is an automated message for you:'
+      ..html = "<h1>Event Name</h1>\n<p>${widget.eventName}</p>\n<h1>Event Date</h1>\n<p>${widget.eventDate}</p>\n<h1>Event Time</h1>\n<p>${widget.eventTime}</p>\n<h1>Event Location</h1>\n<p>${widget.eventLocation}</p>\n";
+
+    final sendReports = await send(message, smtpServer);
+    print(widget.email);
+    print(sendReports.toString());
   }
 
   @override
@@ -258,5 +280,17 @@ class _EventsCardState extends State<EventsCard> {
             ],
           )),
     );
+  }
+
+  showNotification() async {
+    var android = new AndroidNotificationDetails(
+        'channel id', 'channel NAME', 'CHANNEL DESCRIPTION',
+        priority: Priority.High,importance: Importance.Max
+    );
+    var iOS = new IOSNotificationDetails();
+    var platform = new NotificationDetails(android, iOS);
+    await flutterLocalNotificationsPlugin.show(
+        0, 'New Video is out', 'Flutter Local Notification', platform,
+        payload: 'Nitish Kumar Singh is part time Youtuber');
   }
 }
