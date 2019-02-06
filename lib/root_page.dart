@@ -50,7 +50,7 @@ class _RootPageState extends State<RootPage> {
     switch (authStatus) {
       case AuthStatus.notSignedIn:
         return new LoginPage(
-          title: 'Flutter Login',
+          title: 'NTYou!',
           auth: widget.auth,
           onSignIn: () => _updateAuthStatus(AuthStatus.signedIn),
         );
