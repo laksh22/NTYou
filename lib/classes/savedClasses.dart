@@ -206,7 +206,7 @@ class _MyHomePageState extends State<MySavedHomePage> {
                                       ),
                                       //second column element
                                       new Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        mainAxisAlignment: MainAxisAlignment.center,
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         children: <Widget>[
