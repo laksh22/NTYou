@@ -438,16 +438,25 @@ class _MyHomePageState extends State<MyHomePage> {
                       value:_sliderValue,
                       min:0,max:24,
                       divisions:48,
-                      label: '${_sliderValue.toStringAsFixed(1)}',
+                      label: '${calcTiming(_sliderValue)}',
                     ),
                   ),
                   Container(
                   width: 70.0,
                   alignment: Alignment.center,
-                  child: Text('${_sliderValue.toStringAsFixed(1)}',
+                  child: Text('${calcTiming(_sliderValue)}',
                       style: Theme.of(context).textTheme.display1),
                     ),
                 ]
+              ),
+              new Center(
+                  child: new Text(
+                    'drag slider to adjust time',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontStyle: FontStyle.italic
+                  ),
+                ),
               ),
 
               new Row(
@@ -501,6 +510,15 @@ class _MyHomePageState extends State<MyHomePage> {
     
       );
     }
+    String calcTiming(double time){
+      double d=double.parse(time.toStringAsFixed(2));
+      String returnTime='';
+      returnTime+=(time.toStringAsFixed(0)+':');
+      returnTime+=(((d%1 *0.6*100)).toStringAsFixed(0));
+      returnTime+= (returnTime.split(':')[1].length==1 ? '0':'');
+      return returnTime;
+    }
+
     void sliderChanged(double value) {
       setState(() => _sliderValue = value);
     }
