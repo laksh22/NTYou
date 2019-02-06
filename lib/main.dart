@@ -12,7 +12,7 @@ final store = Store<CategoryState>(stateReducer,
         Task(0, "week 3 lams", false),
         Task(1, "assignment 1", false),
       ]),
-      Category(1, Icons.content_paste, Colors.orange, "Work", [])
+      Category(1, Icons.content_paste, Colors.blue[100], "Work", [])
     ]));
 
 void main() => runApp(FlutterReduxApp(store: store));

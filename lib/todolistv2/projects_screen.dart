@@ -83,7 +83,7 @@ class _ProjectScreenState extends State<ProjectsScreen> {
                 ),
                 // Toobar,
 
-                SizedBox(height: 48.0),
+                SizedBox(height: 30.0),
                 Padding(
                   padding: EdgeInsets.only(left: horizontalPadding),
                   child: Text(

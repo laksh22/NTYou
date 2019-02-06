@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import  'my_flutter_app_icons.dart';
 import 'package:http/http.dart' as http;
+import 'package:tech_fest_app/classes/savedClasses.dart';
 
 
 void main() {
   runApp(new MyClassApp());
 }
 class MyClassApp extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'LectureTime',
+      title: 'NTYou!',
       theme: new ThemeData(
         primarySwatch: Colors.blue,
         primaryColor: const Color(0xFF2196f3),
@@ -24,7 +24,7 @@ class MyClassApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatefulWidget { //https://stackoverflow.com/questions/45970979/flutter-appbar-backbutton-doesnt-appear - how i solved back button not appearing
   MyHomePage({Key key}) : super(key: key);
   @override
   _MyHomePageState createState() => new _MyHomePageState();
@@ -32,14 +32,19 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
     double _sliderValue=10;
+    String amOrPm='AM';
     String dayButton="MON";
     var dayDict={'MON':'Monday','TUE':'Tuesday','WED':'Wednesday','THU':'Thursday','FRI':'Friday','SAT':'Saturday','SUN':'Sunday'};
     List data;
+    var savedItems=[];
     @override
     Widget build(BuildContext context) {
       return new Scaffold(
         appBar: new AppBar(
           title: new Text('Lecture Time'),
+          actions: <Widget>[
+          new IconButton(icon: const Icon(Icons.save), onPressed: _pushSaved),
+        ],
           ),
         backgroundColor: Color(0xFFF5F5F5),
         body:
@@ -60,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           return new ListView.builder(
                           // Build the ListView
                           itemBuilder: (BuildContext context, int index) {
-                            if(new_data!=null){print(new_data[index]['course']);}
+                            //if(new_data!=null){print(new_data[index]['course']);}
                             // double time = int.parse(new_data[index]['time'][0])/100;
                             String timeStr=new_data[index]['time'][0];                            
                             String day=new_data[index]['day'][0];
@@ -75,343 +80,391 @@ class _MyHomePageState extends State<MyHomePage> {
                             // r1<= _sliderValue && _sliderValue<=r2
                             // print(_sliderValue);
                             if (day==dayButton &&(r1<= _sliderValue && _sliderValue<=r2)&&(new_data[index]['day'].length==1)){
-                              return new Card(
-                                child: new Column(
-                                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                                  children: <Widget>[
-                                    // first column element
-                                    new Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        new Padding(
-                                          padding: EdgeInsets.fromLTRB(20, 5, 0, 10),
-                                          child:Container(
-                                              height: 30.0,
-                                              width: 50.0,
-                                              alignment: Alignment.center,                                          
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.all(
-                                                  Radius.circular(20.0),
-                                                ),
-                                                  color: Colors.green,
-                                              ),
-                                              child: Text('LEC',style: TextStyle(fontSize: 17,)),
-                                            ),
-                                        ),
-                                        new Expanded(
-                                          child: new Center(
-                                            child:Text(
-                                                new_data[index]['module'].replaceAll('*','').replaceAll('#',''),
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 16,
-                                                  
-                                                ),
-                                                textAlign: TextAlign.center,
-                                              )
-                                          ),
-                                        ),
-                                        
-                                      ]
-                                    ),
-                                    //second column element
-                                    new Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        //first row element
-                                        new Tab(
-                                            icon:Icon(Icons.location_on),
-                                        ),                                        
-                                        //second row element
-                                        new Text(
-                                          new_data[index]['venue'][0],
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                            color: Colors.grey,
-                                          ),
-                                        )
-                                      ]
-                                      ),
-                                      //third column element
+                              return InkWell(
+                                onDoubleTap: (){
+                                  this.setState((){
+                                    savedItems.contains(index)? savedItems.remove(index):savedItems.add(index);//the index instead of the whole thing
+                                    print(savedItems);
+                                  });                                  
+                                  
+                                },
+                                child: new Card(
+                                  child: new Column(
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                                    children: <Widget>[
+                                      // first column element
                                       new Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        new Tab(
-                                            icon:Icon(Icons.access_time),
-                                        ),
-                                        new Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
-                                          child: new Text(
-                                            new_data[index]['time'][0],
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                            ),),
-                                        ),
-                                        
-                                        
-                                        new Padding(
-                                          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                                          child:new Tab(
-                                            icon:Icon(Icons.calendar_today),
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          new Padding(
+                                            padding: EdgeInsets.fromLTRB(20, 5, 0, 10),
+                                            child:Container(
+                                                height: 30.0,
+                                                width: 50.0,
+                                                alignment: Alignment.center,                                          
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(20.0),
+                                                  ),
+                                                    color: Colors.green,
+                                                ),
+                                                child: Text('LEC',style: TextStyle(fontSize: 17,)),
+                                              ),
                                           ),
-                                        ),
-                                        
-
-                                        new Text(
-                                          dayDict[new_data[index]['day'][0]],
-                                          style:TextStyle(
-                                            fontSize: 16,
-                                          ))
-                                        
-
-                                      ]
-
+                                          new Expanded(
+                                            child: new Center(
+                                              child:Text(
+                                                  new_data[index]['module'].replaceAll('*','').replaceAll('#',''),
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 16,
+                                                    
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                )
+                                            ),
+                                          ),
+                                          
+                                        ]
                                       ),
-                                  ],
+                                      //second column element
+                                      new Row(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          //first row element
+                                          new Tab(
+                                              icon:Icon(Icons.location_on),
+                                          ),                                        
+                                          //second row element
+                                          new Text(
+                                            new_data[index]['venue'][0],
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                          new Padding(
+                                            padding: EdgeInsets.fromLTRB(100,0,5,0),
+                                              child: new Tab(
+                                              icon: new Icon(
+                                                savedItems.contains(index) ? Icons.favorite : Icons.favorite_border,
+                                                color: savedItems.contains(index) ? Colors.red : null,)
+                                        ),
+                                          ),
+                                        ]
+                                        ),
+                                        //third column element
+                                        new Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          new Tab(
+                                              icon:Icon(Icons.access_time),
+                                          ),
+                                          new Padding(
+                                            padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                            child: new Text(
+                                              new_data[index]['time'][0],
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                              ),),
+                                          ),
+                                          
+                                          
+                                          new Padding(
+                                            padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                            child:new Tab(
+                                              icon:Icon(Icons.calendar_today),
+                                            ),
+                                          ),
+                                          
+
+                                          new Text(
+                                            dayDict[new_data[index]['day'][0]],
+                                            style:TextStyle(
+                                              fontSize: 16,
+                                            ))
+                                          
+
+                                        ]
+
+                                        ),
+                                    ],
+                                  ),
                                 ),
                               );
                            }//end of if
                            else if(day==dayButton &&(r1<= _sliderValue && _sliderValue<=r2)&&(new_data[index]['day'].length==2)){
-                             return new Card(
-                                child: new Column(
-                                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                                  children: <Widget>[
-                                    // first column element
-                                    new Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        new Padding(
-                                          padding: EdgeInsets.fromLTRB(20, 5, 0, 10),
-                                          child:Container(
-                                              height: 30.0,
-                                              width: 50.0,
-                                              alignment: Alignment.center,                                          
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.all(
-                                                  Radius.circular(20.0),
+                             return InkWell(
+                               onDoubleTap: (){
+                                  this.setState((){
+                                    savedItems.contains(index)? savedItems.remove(index):savedItems.add(index);//the index instead of the whole thing
+                                    print(savedItems);
+                                  });                                  
+                                  
+                                },
+
+                               child: new Card(
+                                  child: new Column(
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                                    children: <Widget>[
+                                      // first column element
+                                      new Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          new Padding(
+                                            padding: EdgeInsets.fromLTRB(20, 5, 0, 10),
+                                            child:Container(
+                                                height: 30.0,
+                                                width: 50.0,
+                                                alignment: Alignment.center,                                          
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(20.0),
+                                                  ),
+                                                    color: Colors.green,
                                                 ),
-                                                  color: Colors.green,
+                                                child: Text('LEC',style: TextStyle(fontSize: 17,)),
                                               ),
-                                              child: Text('LEC',style: TextStyle(fontSize: 17,)),
+                                          ),
+                                          new Expanded(
+                                            child: new Center(
+                                              child:Text(
+                                                  new_data[index]['module'].replaceAll('*','').replaceAll('#',''),
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 16,
+                                                    
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                )
                                             ),
-                                        ),
-                                        new Expanded(
-                                          child: new Center(
-                                            child:Text(
-                                                new_data[index]['module'].replaceAll('*','').replaceAll('#',''),
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 16,
-                                                  
-                                                ),
-                                                textAlign: TextAlign.center,
-                                              )
                                           ),
-                                        ),
-                                        
-                                      ]
-                                    ),
-                                    //second column element
-                                    new Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        //first row element
-                                        new Tab(
-                                            icon:Icon(Icons.location_on),
-                                        ),                                        
-                                        //second row element
-                                        new Text(
-                                          new_data[index]['venue'][0],
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                            color: Colors.grey,
-                                          ),
-                                        )
-                                      ]
-                                      ),
-                                      //third column element
-                                      new Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        new Tab(
-                                            icon:Icon(Icons.access_time),
-                                        ),
-                                        new Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
-                                          child: new Text(
-                                            new_data[index]['time'][0],
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                            ),),
-                                        ),
-                                        
-                                        
-                                        new Padding(
-                                          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                                          child:new Tab(
-                                            icon:Icon(Icons.calendar_today),
-                                          ),
-                                        ),
-                                        
-
-                                        new Text(
-                                          dayDict[new_data[index]['day'][0]],
-                                          style:TextStyle(
-                                            fontSize: 16,
-                                          ))
-                                        
-
-                                      ]
-
-                                      ),
-                                      new Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                          Expanded(
-                                            child: Center(child:new Text(
-                                              'Also happens on '+ dayDict[new_data[index]['day'][1]]+', time '+new_data[index]['time'][1] + ' at '+ new_data[index]['venue'][1],
-                                              style:TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.grey
-                                              ))),
-                                          )
+                                          
                                         ]
-                                      )
-                                  ],
+                                      ),
+                                      //second column element
+                                      new Row(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          //first row element
+                                          new Tab(
+                                              icon:Icon(Icons.location_on),
+                                          ),                                        
+                                          //second row element
+                                          new Text(
+                                            new_data[index]['venue'][0],
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                          new Padding(
+                                            padding: EdgeInsets.fromLTRB(100,0,5,0),
+                                            child:new Tab(
+                                            icon: new Icon(
+                                              savedItems.contains(index) ? Icons.favorite : Icons.favorite_border,
+                                              color: savedItems.contains(index) ? Colors.red : null,)))
+                                        ]
+                                        ),
+                                        //third column element
+                                        new Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          new Tab(
+                                              icon:Icon(Icons.access_time),
+                                          ),
+                                          new Padding(
+                                            padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                            child: new Text(
+                                              new_data[index]['time'][0],
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                              ),),
+                                          ),
+                                          
+                                          
+                                          new Padding(
+                                            padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                            child:new Tab(
+                                              icon:Icon(Icons.calendar_today),
+                                            ),
+                                          ),
+                                          
+
+                                          new Text(
+                                            dayDict[new_data[index]['day'][0]],
+                                            style:TextStyle(
+                                              fontSize: 16,
+                                            ))
+                                          
+
+                                        ]
+
+                                        ),
+                                        new Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                            Expanded(
+                                              child: Center(child:new Text(
+                                                'Also happens on '+ dayDict[new_data[index]['day'][1]]+', time '+new_data[index]['time'][1] + ' at '+ new_data[index]['venue'][1],
+                                                style:TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.grey
+                                                ))),
+                                            )
+                                          ]
+                                        )
+                                    ],
+                                  ),
                                 ),
-                              );
+                             );
                            }
                            else if (day2==dayButton &&(r1<= _sliderValue && _sliderValue<=r2)&&(new_data[index]['day'].length==2)){
-                             return new Card(
-                                child: new Column(
-                                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                                  children: <Widget>[
-                                    // first column element
-                                    new Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        new Padding(
-                                          padding: EdgeInsets.fromLTRB(20, 5, 0, 10),
-                                          child:Container(
-                                              height: 30.0,
-                                              width: 50.0,
-                                              alignment: Alignment.center,                                          
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.all(
-                                                  Radius.circular(20.0),
+                             return InkWell(
+                               onDoubleTap: (){
+                                  this.setState((){
+                                    savedItems.contains(index)? savedItems.remove(index):savedItems.add(index);//the index instead of the whole thing
+                                    print(savedItems);
+                                  });                                  
+                                  
+                                },
+                               child: new Card(
+                                  child: new Column(
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                                    children: <Widget>[
+                                      // first column element
+                                      new Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          new Padding(
+                                            padding: EdgeInsets.fromLTRB(20, 5, 0, 10),
+                                            child:Container(
+                                                height: 30.0,
+                                                width: 50.0,
+                                                alignment: Alignment.center,                                          
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(20.0),
+                                                  ),
+                                                    color: Colors.green,
                                                 ),
-                                                  color: Colors.green,
+                                                child: Text('LEC',style: TextStyle(fontSize: 17,)),
                                               ),
-                                              child: Text('LEC',style: TextStyle(fontSize: 17,)),
+                                          ),
+                                          new Expanded(
+                                            child: new Center(
+                                              child:Text(
+                                                  new_data[index]['module'].replaceAll('*','').replaceAll('#',''),
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 16,
+                                                    
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                )
                                             ),
-                                        ),
-                                        new Expanded(
-                                          child: new Center(
-                                            child:Text(
-                                                new_data[index]['module'].replaceAll('*','').replaceAll('#',''),
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 16,
-                                                  
-                                                ),
-                                                textAlign: TextAlign.center,
-                                              )
                                           ),
-                                        ),
-                                        
-                                      ]
-                                    ),
-                                    //second column element
-                                    new Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        //first row element
-                                        new Tab(
-                                            icon:Icon(Icons.location_on),
-                                        ),                                        
-                                        //second row element
-                                        new Text(
-                                          new_data[index]['venue'][1],
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                            color: Colors.grey,
-                                          ),
-                                        )
-                                      ]
-                                      ),
-                                      //third column element
-                                      new Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        new Tab(
-                                            icon:Icon(Icons.access_time),
-                                        ),
-                                        new Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
-                                          child: new Text(
-                                            new_data[index]['time'][1],
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                            ),),
-                                        ),
-                                        
-                                        
-                                        new Padding(
-                                          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                                          child:new Tab(
-                                            icon:Icon(Icons.calendar_today),
-                                          ),
-                                        ),
-                                        
-
-                                        new Text(
-                                          dayDict[new_data[index]['day'][1]],
-                                          style:TextStyle(
-                                            fontSize: 16,
-                                          ))
-                                        
-
-                                      ]
-
-                                      ),
-                                      new Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                          Expanded(
-                                             child: Center(child:new Text(
-                                              'Also happens on '+ dayDict[new_data[index]['day'][0]]+', time '+new_data[index]['time'][0] + ' at '+ new_data[index]['venue'][0],
-                                              style:TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.grey
-                                              ))),
-                                          )
+                                          
                                         ]
-                                      )
-                                  ],
+                                      ),
+                                      //second column element
+                                      new Row(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          //first row element
+                                          new Tab(
+                                              icon:Icon(Icons.location_on),
+                                          ),                                        
+                                          //second row element
+                                          new Text(
+                                            new_data[index]['venue'][1],
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                          new Padding(
+                                            padding: EdgeInsets.fromLTRB(100,0,5,0),
+                                            child:new Tab(
+                                              icon: new Icon(
+                                                savedItems.contains(index) ? Icons.favorite : Icons.favorite_border,
+                                                color: savedItems.contains(index) ? Colors.red : null,)))
+                                        ]
+                                        ),
+                                        //third column element
+                                        new Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          new Tab(
+                                              icon:Icon(Icons.access_time),
+                                          ),
+                                          new Padding(
+                                            padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                            child: new Text(
+                                              new_data[index]['time'][1],
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                              ),),
+                                          ),
+                                          
+                                          
+                                          new Padding(
+                                            padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                            child:new Tab(
+                                              icon:Icon(Icons.calendar_today),
+                                            ),
+                                          ),
+                                          
+
+                                          new Text(
+                                            dayDict[new_data[index]['day'][1]],
+                                            style:TextStyle(
+                                              fontSize: 16,
+                                            ))
+                                          
+
+                                        ]
+
+                                        ),
+                                        new Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                            Expanded(
+                                               child: Center(child:new Text(
+                                                'Also happens on '+ dayDict[new_data[index]['day'][0]]+', time '+new_data[index]['time'][0] + ' at '+ new_data[index]['venue'][0],
+                                                style:TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.grey
+                                                ))),
+                                            )
+                                          ]
+                                        )
+                                    ],
+                                  ),
                                 ),
-                              );
+                             );
                            }
                            else {
                              return new Container();
@@ -438,20 +491,32 @@ class _MyHomePageState extends State<MyHomePage> {
                       value:_sliderValue,
                       min:0,max:24,
                       divisions:48,
-                      label: '${_sliderValue.toStringAsFixed(1)}',
+                      label: '${calcTiming(_sliderValue)}',
                     ),
                   ),
-                  Container(
-                  width: 70.0,
-                  alignment: Alignment.center,
-                  child: Text('${_sliderValue.toStringAsFixed(1)}',
-                      style: Theme.of(context).textTheme.display1),
-                    ),
+                  Padding(
+                    padding: EdgeInsets.all(5),
+                    child: Text(
+                      '${calcTiming(_sliderValue)} $amOrPm',
+                      style: TextStyle(
+                        fontSize: 20
+                        )
+                      ),
+                  ),
                 ]
+              ),
+              new Center(
+                  child: new Text(
+                    'drag slider to adjust time',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontStyle: FontStyle.italic
+                  ),
+                ),
               ),
 
               new Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
@@ -501,7 +566,25 @@ class _MyHomePageState extends State<MyHomePage> {
     
       );
     }
+
+    void _pushSaved(){
+      Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MySavedHomePage(savedItems: savedItems)),
+          );
+    }
+
+    String calcTiming(double time){
+      double d=double.parse(time.toStringAsFixed(2));
+      String returnTime='';
+      returnTime+=(time.toStringAsFixed(0)+':');
+      returnTime+=(((d%1 *0.6*100)).toStringAsFixed(0));
+      returnTime+= (returnTime.split(':')[1].length==1 ? '0':'');
+      return returnTime;
+    }
+
     void sliderChanged(double value) {
+      amOrPm= value<12 ? 'AM' : 'PM';
       setState(() => _sliderValue = value);
     }
 
