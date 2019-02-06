@@ -12,7 +12,7 @@ class MyClassApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'LectureTime',
+      title: 'NTYou!',
       theme: new ThemeData(
         primarySwatch: Colors.blue,
         primaryColor: const Color(0xFF2196f3),
@@ -24,7 +24,7 @@ class MyClassApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatefulWidget { //https://stackoverflow.com/questions/45970979/flutter-appbar-backbutton-doesnt-appear - how i solved back button not appearing
   MyHomePage({Key key}) : super(key: key);
   @override
   _MyHomePageState createState() => new _MyHomePageState();

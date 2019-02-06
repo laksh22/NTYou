@@ -12,7 +12,7 @@ void main() {
           Task(0, "Sumbit week 3 lams", false),
            Task(0, "assignment 1", false),
         ]),
-        Category(1, Icons.content_paste, Colors.orange, "Work", [])
+        Category(1, Icons.content_paste, Colors.blue[100], "Work", [])
       ]));
   runApp(FlutterReduxApp(store: store));
 }
@@ -52,7 +52,7 @@ class MyHomePageToDo extends StatefulWidget {
            Task(0, "Sumbit week 3 lams", false),
            Task(1, "assignment 1", false), 
          ]),
-         Category(1, Icons.content_paste, Colors.orange, "Work", [])
+         Category(1, Icons.content_paste, Colors.blue[100], "Work", [])
        ]));
 
   MyHomePageToDo({Key key, this.title}) : super(key: key);
@@ -67,6 +67,9 @@ class _MyHomePageState extends State<MyHomePageToDo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: new AppBar(
+          title: new Text('ToDo'),
+          ),
       body: StoreConnector<CategoryState, Color>(
           converter: (store) => store.state.categories[0].color,
           builder: (context, color) => ProjectsScreen(
