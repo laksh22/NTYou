@@ -32,6 +32,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
     double _sliderValue=10;
+    String amOrPm='AM';
     String dayButton="MON";
     var dayDict={'MON':'Monday','TUE':'Tuesday','WED':'Wednesday','THU':'Thursday','FRI':'Friday','SAT':'Saturday','SUN':'Sunday'};
     List data;
@@ -441,12 +442,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       label: '${calcTiming(_sliderValue)}',
                     ),
                   ),
-                  Container(
-                  width: 70.0,
-                  alignment: Alignment.center,
-                  child: Text('${calcTiming(_sliderValue)}',
-                      style: Theme.of(context).textTheme.display1),
-                    ),
+                  Padding(
+                    padding: EdgeInsets.all(5),
+                    child: Text(
+                      '${calcTiming(_sliderValue)} $amOrPm',
+                      style: TextStyle(
+                        fontSize: 20
+                        )
+                      ),
+                  ),
                 ]
               ),
               new Center(
@@ -520,6 +524,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     void sliderChanged(double value) {
+      amOrPm= value<12 ? 'AM' : 'PM';
       setState(() => _sliderValue = value);
     }
 
