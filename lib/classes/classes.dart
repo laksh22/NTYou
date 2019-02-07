@@ -117,6 +117,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                                         fontSize: 15,
                                                       ),
                                                       textAlign: TextAlign.left,
+                                                      maxLines: 1,
+                                                      softWrap: false,
+                                                      overflow: TextOverflow.ellipsis,
                                                     ),
                                               ),
                                             ]
@@ -237,6 +240,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 15,
                                                   ),
                                                   textAlign: TextAlign.left,
+                                                  maxLines: 2,
+                                                  softWrap: false,
+                                                  overflow: TextOverflow.ellipsis,
                                                 ),
                                               ),
                                             ]
@@ -326,10 +332,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: <Widget>[
                                         // first column widget
-                                        new Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                        new Wrap(
+                                            spacing: 8.0, // gap between adjacent chips
+                                            runSpacing: 4.0, // gap between lines
+                                            direction: Axis.horizontal, //
                                             children: <Widget>[
                                               new Padding(
                                                 padding: EdgeInsets.fromLTRB(15, 10, 0, 10),
@@ -354,6 +360,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 15,
                                                   ),
                                                   textAlign: TextAlign.left,
+                                                  maxLines: 2,
+                                                  softWrap: false,
+                                                  overflow: TextOverflow.ellipsis,
                                                 ),
                                               ),
                                             ]

@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MySavedHomePage> {
     Widget build(BuildContext context) {
       return new Scaffold(
         appBar: new AppBar(
-          title: new Text('SavedLectures'),
+          title: new Text('Saved Lectures'),
           
           ),
         backgroundColor: Color(0xFFF5F5F5),
