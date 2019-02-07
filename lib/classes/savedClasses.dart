@@ -67,14 +67,14 @@ class _MyHomePageState extends State<MySavedHomePage> {
                                     new Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
                                         new Padding(
                                           padding: EdgeInsets.fromLTRB(20, 5, 0, 10),
                                           child:Container(
                                               height: 30.0,
                                               width: 50.0,
-                                              alignment: Alignment.center,                                          
+                                              alignment: Alignment.topLeft,
                                               decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.all(
                                                   Radius.circular(20.0),
@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MySavedHomePage> {
                                                   fontSize: 16,
                                                   
                                                 ),
-                                                textAlign: TextAlign.center,
+                                                textAlign: TextAlign.left,
                                               )
                                           ),
                                         ),
@@ -102,9 +102,9 @@ class _MyHomePageState extends State<MySavedHomePage> {
                                     ),
                                     //second column element
                                     new Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
                                         //first row element
                                         new Tab(
@@ -123,9 +123,9 @@ class _MyHomePageState extends State<MySavedHomePage> {
                                       ),
                                       //third column element
                                       new Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
                                         new Tab(
                                             icon:Icon(Icons.access_time),
@@ -171,14 +171,14 @@ class _MyHomePageState extends State<MySavedHomePage> {
                                       new Row(
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
                                           new Padding(
                                             padding: EdgeInsets.fromLTRB(20, 5, 0, 10),
                                             child:Container(
                                                 height: 30.0,
                                                 width: 50.0,
-                                                alignment: Alignment.center,                                          
+                                                alignment: Alignment.topLeft,
                                                 decoration: BoxDecoration(
                                                   borderRadius: BorderRadius.all(
                                                     Radius.circular(20.0),
@@ -197,7 +197,7 @@ class _MyHomePageState extends State<MySavedHomePage> {
                                                     fontSize: 16,
                                                     
                                                   ),
-                                                  textAlign: TextAlign.center,
+                                                  textAlign: TextAlign.left,
                                                 )
                                             ),
                                           ),
@@ -206,9 +206,9 @@ class _MyHomePageState extends State<MySavedHomePage> {
                                       ),
                                       //second column element
                                       new Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
                                           //first row element
                                           new Tab(
@@ -227,9 +227,9 @@ class _MyHomePageState extends State<MySavedHomePage> {
                                         ),
                                         //third column element
                                         new Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
                                           new Tab(
                                               icon:Icon(Icons.access_time),
@@ -263,9 +263,9 @@ class _MyHomePageState extends State<MySavedHomePage> {
 
                                         ),
                                         new Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
                                             Expanded(
                                               child: Center(child:new Text(
