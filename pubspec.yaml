@@ -78,6 +78,7 @@ flutter:
     - assets/veg_rice.jpg
     - assets/one.jpg
     - assets/paynow.png
+    - assets/logo.png
   fonts:
     - family : MyFlutterApp
       fonts:

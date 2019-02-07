@@ -55,18 +55,17 @@ class _BusPageState extends State<BusPage> {
   void initState() {
     super.initState();
     flutterWebviewPlugin.launch(selectedUrl,userAgent: kAndroidUserAgent);
-    final Rect rect = new Rect.fromLTWH(0.0, 30.0, 700, 600);
+    final Rect rect = new Rect.fromLTWH(0.0, 35.0, 370, 600);
     flutterWebviewPlugin.resize(rect);
     _urlCtrl.addListener(() {
       selectedUrl = _urlCtrl.text;
     });
-
     // Add a listener to on destroy WebView, so you can make came actions.
     _onDestroy = flutterWebviewPlugin.onDestroy.listen((_) {
       if (mounted) {
         // Actions like show a info toast.
         _scaffoldKey.currentState.showSnackBar(
-            const SnackBar(content: const Text('Webview Destroyed')));
+            const SnackBar(content: const Text('Bus Page Closed')));
       }
     });
 

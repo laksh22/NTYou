@@ -14,7 +14,7 @@ final List<String> imgList = [
 final List<String> nameList = [
   "Canteen A",
   "Canteen B",
-  "Canteen North Hill Court",
+  "North Hill Food Court",
   "Canteen 1",
   "Canteen 13",
 ];

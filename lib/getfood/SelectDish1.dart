@@ -12,24 +12,24 @@ class Dish{
 final List<Dish> _dishes = <Dish>[
   Dish(
       name: 'Veg Noodles',
-      price: '4 SGD',
+      price: '3 SGD',
       calories: '120kcal',
       imageUrl: 'one.jpg'
   ),
   Dish(
       name: 'Beef Fried Rice',
-      price: '5 SGD',
+      price: '4.5 SGD',
       calories: '350k',
       imageUrl:'201205-xl-beef-fried-rice.jpg'),
   Dish(
     name: 'Chicken Fillet Rice',
-    price: '5 SGD',
+    price: '4.5 SGD',
     calories: '400k',
     imageUrl: '92122816-chicken-fillet-with-fried-rice-on-white-plate-.jpg',
   ),
   Dish(
     name: 'Fish Fillet Rice',
-    price: '5 SGD',
+    price: '5.5 SGD',
     calories: '330k',
     imageUrl:'crispy-fish-Greek-rice-bowls-1.jpg',
   ),

@@ -76,6 +76,7 @@ class _LoginPageState extends State<LoginPage> {
 
   List<Widget> usernameAndPassword() {
     return [
+      new Image.asset("assets/logo.png"),
       padded(child: new TextFormField(
         key: new Key('email'),
         decoration: InputDecoration(
@@ -177,7 +178,8 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ])
                     ),
-                    hintText()
+                    hintText(),
+
                   ]
               )
           ))

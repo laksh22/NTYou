@@ -60,7 +60,7 @@ class _PayPageState extends State<PayPage> {
       if (mounted) {
         // Actions like show a info toast.
         _scaffoldKey.currentState.showSnackBar(
-            const SnackBar(content: const Text('Webview Destroyed')));
+            const SnackBar(content: const Text('Payment Page Closed')));
       }
     });
 
@@ -152,6 +152,8 @@ class _PayPageState extends State<PayPage> {
                                 .size
                                 .width, 600.0),
                             userAgent: kAndroidUserAgent);
+                        Rect rect = new Rect.fromLTWH(0.0, 30.0, 370, 560);
+                        flutterWebviewPlugin.resize(rect);
                       },
                       child: const Text('Proceed to check out'),
                       color: Colors.blue,
@@ -162,7 +164,7 @@ class _PayPageState extends State<PayPage> {
                     ),
 
       new Container(
-      margin: const EdgeInsets.only(top: 260.0),
+      margin: const EdgeInsets.only(top: 210.0),
       child : new RaisedButton(
       onPressed:(){
       setState(() {
