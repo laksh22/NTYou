@@ -313,6 +313,23 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ]
 
                                         ),
+                                        new Row(
+//                                            mainAxisAlignment: MainAxisAlignment.center,
+//                                            mainAxisSize: MainAxisSize.max,
+//                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              new Padding(
+                                                padding: EdgeInsets.fromLTRB(5, 0, 10, 0),
+                                                child: Center(child:new Text(
+                                                    'Also happens on '+ dayDict[new_data[index]['day'][1]]+', time '+new_data[index]['time'][1] + ' at '+ new_data[index]['venue'][1],
+                                                    style:TextStyle(
+                                                        fontSize: 16,
+                                                        color: Colors.grey
+                                                    ),overflow: TextOverflow.ellipsis,)),
+                                              )
+                                            ]
+                                        )
+
                                       ],
                                     ),
                                   ),
@@ -438,6 +455,21 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ]
 
                                         ),
+                                        new Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: <Widget>[
+                                              Expanded(
+                                                child: Center(child:new Text(
+                                                    'Also happens on '+ dayDict[new_data[index]['day'][0]]+', time '+new_data[index]['time'][0] + ' at '+ new_data[index]['venue'][0],
+                                                    style:TextStyle(
+                                                        fontSize: 16,
+                                                        color: Colors.grey
+                                                    ),overflow: TextOverflow.ellipsis,)),
+                                              )
+                                            ]
+                                        )
                                       ],
                                     ),
                                   ),
