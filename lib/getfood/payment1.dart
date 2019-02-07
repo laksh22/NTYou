@@ -125,7 +125,6 @@ class _PayPageState extends State<PayPage> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -154,7 +153,7 @@ class _PayPageState extends State<PayPage> {
                                 .width, 600.0),
                             userAgent: kAndroidUserAgent);
                       },
-                      child: const Text('Check out'),
+                      child: const Text('Proceed to check out'),
                       color: Colors.blue,
                       textColor: Colors.white,
                     ),
@@ -163,7 +162,7 @@ class _PayPageState extends State<PayPage> {
                     ),
 
       new Container(
-      margin: const EdgeInsets.only(top: 350.0),
+      margin: const EdgeInsets.only(top: 260.0),
       child : new RaisedButton(
       onPressed:(){
       setState(() {
