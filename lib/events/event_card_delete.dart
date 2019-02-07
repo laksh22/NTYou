@@ -65,7 +65,13 @@ class _EventsCardDeleteState extends State<EventsCardDelete> {
       ..text = 'This is an automated message for you:'
       ..html = "<h1>Event Name</h1>\n<p>${widget.eventName}</p>\n<h1>Event Date</h1>\n<p>${widget.eventDate}</p>\n<h1>Event Time</h1>\n<p>${widget.eventTime}</p>\n<h1>Event Location</h1>\n<p>${widget.eventLocation}</p>\n";
 
-    final sendReports = await send(message, smtpServer);
+    sendDelayedEmail(message);
+  }
+
+  Future<void> sendDelayedEmail(message) async {
+    return new Future.delayed(const Duration(days: 1), () async {
+      final sendReports = await send(message, smtpServer);
+    } );
   }
 
   void _showDeleteDialog() {
