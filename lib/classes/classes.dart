@@ -158,7 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 ),
                                               ),
                                               new Padding(
-                                                padding: EdgeInsets.fromLTRB(5, 0, 20, 0),
+                                                padding: EdgeInsets.fromLTRB(3, 0, 20, 0),
                                                 child: new Text(
                                                   new_data[index]['time'][0],
                                                   style: TextStyle(
@@ -281,7 +281,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 ),
                                               ),
                                               new Padding(
-                                                padding: EdgeInsets.fromLTRB(10, 0, 20, 0),
+                                                padding: EdgeInsets.fromLTRB(3, 0, 20, 0),
                                                 child: new Text(
                                                   new_data[index]['time'][0],
                                                   style: TextStyle(
@@ -406,7 +406,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 ),
                                               ),
                                               new Padding(
-                                                padding: EdgeInsets.fromLTRB(10, 0, 20, 0),
+                                                padding: EdgeInsets.fromLTRB(3, 0, 20, 0),
                                                 child: new Text(
                                                   new_data[index]['time'][0],
                                                   style: TextStyle(
