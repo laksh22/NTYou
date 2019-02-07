@@ -139,110 +139,170 @@ class HeroPageState extends State<HeroPage>
             ),
             SliverList(
               delegate: SliverChildBuilderDelegate((context,index){
-                return Card(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                            padding: EdgeInsets.all(5.0),
-                            decoration: BoxDecoration(
-//                          color: Colors.grey,
-                                borderRadius: BorderRadius.circular(5.0)
-                            ),
-                            width: 100.0,
-                            height: 100.0,
-                            child:InkWell(
-                              onTap: (){
-                                Navigator.of(context).push(new PageRouteBuilder(
-                                    opaque: false,
-                                    barrierDismissible:true,
-                                    pageBuilder: (BuildContext context, _, __) {
-                                      return SimpleDialog(
-                                        contentPadding: EdgeInsets.zero,
-                                        children: [
-                                          Image.asset("assets/${_dishes[index].imageUrl}",fit: BoxFit.fill),
-                                          Padding(
-                                            padding: const EdgeInsets.all(16.0),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                                              children:[
-                                                Text(_dishes[index].name,
+                return new GestureDetector(
+                  onTap: (){
+                    Navigator.of(context).push(new PageRouteBuilder(
+                        opaque: false,
+                        barrierDismissible:true,
+                        pageBuilder: (BuildContext context, _, __) {
+                          return SimpleDialog(
+                            contentPadding: EdgeInsets.zero,
+                            children: [
+                              Image.asset("assets/${_dishes[index].imageUrl}",fit: BoxFit.fill),
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children:[
+                                    Text(_dishes[index].name,
 //                                                  style: localTheme.textTheme.display1,
-                                                ),
-                                                Text(_dishes[index].price,
+                                    ),
+                                    Text(_dishes[index].price,
 
-                                                   ),
-                                                SizedBox(height: 16.0),
-                                                Text(_dishes[index].calories,
-                                                   ),
-                                                SizedBox(height: 16.0),
-                                                Align(
-                                                    alignment: Alignment.centerRight,
-                                                    child: Wrap(
-                                                        children:[
-                                                          FlatButton(
-                                                            onPressed: (){
-                                                              Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(builder: (context) =>HeroPage()),
-                                                              );
-                                                            },
-                                                            child: const Text('Back'),
-                                                            color: Colors.white,
-                                                            textColor: Colors.blue,
-                                                          ),
-                                                          RaisedButton(
-                                                            onPressed: () {
-                                                              Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(builder: (context) =>PayPage()),
-                                                              );
-                                                            },
-                                                            child: const Text('Add to order'),
-                                                            color: Colors.blue,
-                                                            textColor: Colors.white,
-                                                          )
-                                                        ]
-                                                    )
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    }));
-                              },
-                              child: Hero(
-                                tag: "image_$index",
-                                child: Material(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  elevation: 5.0,
-                                  child: Stack(
-                                    fit: StackFit.expand,
-                                    children: <Widget>[
-                                      Image.asset("assets/${_dishes[index].imageUrl}",fit: BoxFit.fill),
-                                    ],
-                                  ),
+                                    ),
+                                    SizedBox(height: 16.0),
+                                    Text(_dishes[index].calories,
+                                    ),
+                                    SizedBox(height: 16.0),
+                                    Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Wrap(
+                                            children:[
+                                              FlatButton(
+                                                onPressed: (){
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(builder: (context) =>HeroPage()),
+                                                  );
+                                                },
+                                                child: const Text('Back'),
+                                                color: Colors.white,
+                                                textColor: Colors.blue,
+                                              ),
+                                              RaisedButton(
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(builder: (context) =>PayPage()),
+                                                  );
+                                                },
+                                                child: const Text('Add to order'),
+                                                color: Colors.blue,
+                                                textColor: Colors.white,
+                                              )
+                                            ]
+                                        )
+                                    )
+                                  ],
                                 ),
                               ),
-                            )
-                        ),
-                        Expanded(
-                            child: Padding(
+                            ],
+                          );
+                        }));
+                  },
+                  child: Card(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
                               padding: EdgeInsets.all(5.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: <Widget>[
-                                  Text("${_dishes[index].name}",style: TextStyle(fontSize: 16.0),),
-                                  Text("Price: ${_dishes[index].price}    Calories: 400k",style: TextStyle(fontSize: 13.0),),
-
-                                ],
+                              decoration: BoxDecoration(
+//                          color: Colors.grey,
+                                  borderRadius: BorderRadius.circular(5.0)
                               ),
-                            )
-                        ),
+                              width: 100.0,
+                              height: 100.0,
+                              child:InkWell(
+                                onTap: (){
+                                  Navigator.of(context).push(new PageRouteBuilder(
+                                      opaque: false,
+                                      barrierDismissible:true,
+                                      pageBuilder: (BuildContext context, _, __) {
+                                        return SimpleDialog(
+                                          contentPadding: EdgeInsets.zero,
+                                          children: [
+                                            Image.asset("assets/${_dishes[index].imageUrl}",fit: BoxFit.fill),
+                                            Padding(
+                                              padding: const EdgeInsets.all(16.0),
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                                children:[
+                                                  Text(_dishes[index].name,
+//                                                  style: localTheme.textTheme.display1,
+                                                  ),
+                                                  Text(_dishes[index].price,
 
-                      ],
-                    )
+                                                  ),
+                                                  SizedBox(height: 16.0),
+                                                  Text(_dishes[index].calories,
+                                                  ),
+                                                  SizedBox(height: 16.0),
+                                                  Align(
+                                                      alignment: Alignment.centerRight,
+                                                      child: Wrap(
+                                                          children:[
+                                                            FlatButton(
+                                                              onPressed: (){
+                                                                Navigator.pop(context);
+                                                              },
+                                                              child: const Text('Back'),
+                                                              color: Colors.white,
+                                                              textColor: Colors.blue,
+                                                            ),
+                                                            RaisedButton(
+                                                              onPressed: () {
+                                                                Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(builder: (context) =>PayPage()),
+                                                                );
+                                                              },
+                                                              child: const Text('Add to order'),
+                                                              color: Colors.blue,
+                                                              textColor: Colors.white,
+                                                            )
+                                                          ]
+                                                      )
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      }));
+                                },
+                                child: Hero(
+                                  tag: "image_$index",
+                                  child: Material(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    elevation: 5.0,
+                                    child: Stack(
+                                      fit: StackFit.expand,
+                                      children: <Widget>[
+                                        Image.asset("assets/${_dishes[index].imageUrl}",fit: BoxFit.fill),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              )
+                          ),
+                          Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.all(5.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: <Widget>[
+                                    Text("${_dishes[index].name}",style: TextStyle(fontSize: 16.0),),
+                                    Text("Price: ${_dishes[index].price}    Calories: 400k",style: TextStyle(fontSize: 13.0),),
+
+                                  ],
+                                ),
+                              )
+                          ),
+
+                        ],
+                      ),
+                  ),
+
                 );
               },
                   childCount: itemData.length

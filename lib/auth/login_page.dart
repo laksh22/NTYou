@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tech_fest_app/common/primary_button.dart';
 import 'package:tech_fest_app/auth/auth.dart';
-
+import 'package:flutter/foundation.dart';
 class LoginPage extends StatefulWidget {
   LoginPage({Key key, this.title, this.auth, this.onSignIn}) : super(key: key);
 
@@ -20,7 +20,6 @@ enum FormType {
 
 class _LoginPageState extends State<LoginPage> {
   static final formKey = new GlobalKey<FormState>();
-
   String _email;
   String _password;
   FormType _formType = FormType.login;

@@ -137,8 +137,9 @@ class _PayPageState extends State<PayPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           new Container(
+
             padding: const EdgeInsets.all(24.0),
-            child: new TextField(controller: _urlCtrl),
+            child: new Image.asset("assets/paynow.png"),
           ),
           Align(
               child: Wrap(
@@ -169,10 +170,7 @@ class _PayPageState extends State<PayPage> {
       _history.clear();
       });
       flutterWebviewPlugin.close();
-      Navigator.push(context,
-      MaterialPageRoute(builder:
-      (context) => HeroPage()),
-      )
+      Navigator.pop(context)
       ;},
       child: const Text('Cancel'),
       color: Colors.white,

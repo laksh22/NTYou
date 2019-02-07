@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:tech_fest_app/auth/auth.dart';
 import 'package:tech_fest_app/events/add_event.dart';
 import 'package:tech_fest_app/events/event_card.dart';

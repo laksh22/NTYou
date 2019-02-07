@@ -75,7 +75,7 @@ class SelectFood extends State<MyHomePage> {
                     child: Wrap(
                         children:[
                           FlatButton(
-                            onPressed: (){},
+                            onPressed: (){Navigator.pop(context);},
                             child: const Text('Back'),
                             color: Colors.white,
                             textColor: Colors.blue,

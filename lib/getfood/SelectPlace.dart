@@ -4,7 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:tech_fest_app/getfood/SelectDish1.dart';
 
 final List<String> imgList = [
-  'http://maps.ntu.edu.sg/static/photos/41_t.jpg',
+  'https://www.zaobao.com.sg/sites/default/files/images/201706/20170628/20170628_news_ntu01.jpg',
   'http://www.jayyeo.com/projects/nanyangchronicle/wp-content/uploads/2013/08/KW_9179_RS.jpg',
   'http://www.ntu.edu.sg/has/FnB/SiteAssets/Pages/HallCanteens/NorthHIllFC_280x180.jpg',
   'https://pic.sgchinese.net/attachments/forum/201508/19/113839h24fzyztfmm6iid7.png',
@@ -108,7 +108,10 @@ class PlacePageState extends State<PlacePage> {
                     padding: const EdgeInsets.all(8.0),
                     child: new Text("Select",
                       style: new TextStyle(
-                          color: Colors.white, fontSize: 20.0)),
+                  color: Colors.white, fontSize: 20.0)),
+                  shape: new RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                  Radius.circular(20.0 / 2))),
                 )
               ],
             ),

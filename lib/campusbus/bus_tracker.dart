@@ -3,7 +3,7 @@ import 'package:tech_fest_app/getfood/SelectDish1.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-
+import 'package:tech_fest_app/home.dart';
 import 'dart:io';
 
 
@@ -50,12 +50,13 @@ class _BusPageState extends State<BusPage> {
 
   final _history = [];
 
+
   @override
   void initState() {
     super.initState();
-
-    flutterWebviewPlugin.close();
-
+    flutterWebviewPlugin.launch(selectedUrl,userAgent: kAndroidUserAgent);
+    final Rect rect = new Rect.fromLTWH(0.0, 30.0, 700, 600);
+    flutterWebviewPlugin.resize(rect);
     _urlCtrl.addListener(() {
       selectedUrl = _urlCtrl.text;
     });
@@ -138,12 +139,14 @@ class _BusPageState extends State<BusPage> {
       appBar: new AppBar(
         title: const Text('Campus Bus'),
       ),
-      body: new Column(
+      body:
+      new Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           new Container(
             padding: const EdgeInsets.all(24.0),
             child: new TextField(controller: _urlCtrl),
+
           ),
           Align(
               child: Wrap(
@@ -152,25 +155,9 @@ class _BusPageState extends State<BusPage> {
                   ]
               )
           ),
-          Padding(
-              padding: const EdgeInsets.all(16.0),
-          child: RaisedButton(
-            onPressed: () {
-              flutterWebviewPlugin.launch(selectedUrl,
-                  rect: new Rect.fromLTWH(
-                      0,30, MediaQuery.of(context).size
-                      .width, 600.0),
-                  userAgent: kAndroidUserAgent);
-              final Rect rect = new Rect.fromLTWH(0.0, 30.0, 700, 600);
-              flutterWebviewPlugin.resize(rect);
-            },
-            child: const Text('Go to the bus'),
-            color: Colors.blue,
-            textColor: Colors.white,
-          ),
-          ),
+
           new Container(
-            margin: const EdgeInsets.only(top: 350.0),
+            margin: const EdgeInsets.only(top: 400.0),
             child : new RaisedButton(
               onPressed:(){
                 setState(() {
@@ -179,12 +166,12 @@ class _BusPageState extends State<BusPage> {
                 flutterWebviewPlugin.close();
                 Navigator.push(context,
                   MaterialPageRoute(builder:
-                      (context) => BusPage()),
+                      (context) => Home()),
                 )
                 ;},
               child: const Text('Back to home'),
-              color: Colors.white,
-              textColor: Colors.blue,
+              color: Colors.blue,
+              textColor: Colors.white,
             ),
           ),
         ],
