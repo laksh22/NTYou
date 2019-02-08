@@ -97,30 +97,32 @@ class _MyHomePageState extends State<MyHomePage> {
                                               new Padding(
                                                 padding: EdgeInsets.fromLTRB(15, 10, 0, 10),
                                                 child:Container(
-                                                  height: 20.0,
-                                                  width: 25.0,
+                                                  height: 25.0,
+                                                  width: 30.0,
                                                   alignment: Alignment.center,
                                                   decoration: BoxDecoration(
                                                     borderRadius: BorderRadius.all(
                                                       Radius.circular(5.0),
                                                     ),
-                                                    color: Colors.lightBlue,
+                                                    color: Colors.green,
                                                   ),
-                                                  child: Text('LEC',style: TextStyle(fontSize: 12,color: Colors.black)),
+                                                  child: Text('LEC',style: TextStyle(fontSize: 14,color: Colors.black)),
                                                 ),
                                               ),
-                                              new Container(
-                                                    child:Text(
-                                                      ' '+new_data[index]['module'].replaceAll('*','').replaceAll('#',''),
-                                                      style: TextStyle(
-                                                        fontWeight: FontWeight.bold,
-                                                        fontSize: 15,
+                                              Expanded(
+                                                child: new Container(
+                                                      child:Text(
+                                                        ' '+new_data[index]['module'].replaceAll('*','').replaceAll('#',''),
+                                                        style: TextStyle(
+                                                          fontWeight: FontWeight.bold,
+                                                          fontSize: 16,
+                                                        ),
+                                                        textAlign: TextAlign.left,
+                                                        maxLines: 2,
+                                                        softWrap: false,
+                                                        overflow: TextOverflow.ellipsis,
                                                       ),
-                                                      textAlign: TextAlign.left,
-                                                      maxLines: 1,
-                                                      softWrap: false,
-                                                      overflow: TextOverflow.ellipsis,
-                                                    ),
+                                                ),
                                               ),
                                             ]
                                         ),
@@ -220,16 +222,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                               new Padding(
                                                 padding: EdgeInsets.fromLTRB(15, 10, 0, 10),
                                                 child:Container(
-                                                  height: 20.0,
-                                                  width: 25.0,
+                                                  height: 25.0,
+                                                  width: 30.0,
                                                   alignment: Alignment.center,
                                                   decoration: BoxDecoration(
                                                     borderRadius: BorderRadius.all(
                                                       Radius.circular(5.0),
                                                     ),
-                                                    color: Colors.lightBlue,
+                                                    color: Colors.green,
                                                   ),
-                                                  child: Text('LEC',style: TextStyle(fontSize: 12,color: Colors.black)),
+                                                  child: Text('LEC',style: TextStyle(fontSize: 14,color: Colors.black)),
                                                 ),
                                               ),
                                               new Container(
@@ -237,9 +239,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   ' '+new_data[index]['module'].replaceAll('*','').replaceAll('#',''),
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 15,
+                                                    fontSize: 16,
                                                   ),
-                                                  textAlign: TextAlign.left,
+                                                  textAlign: TextAlign.left, 
                                                   maxLines: 2,
                                                   softWrap: false,
                                                   overflow: TextOverflow.ellipsis,
@@ -314,21 +316,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
                                         ),
                                         new Row(
-//                                            mainAxisAlignment: MainAxisAlignment.center,
-//                                            mainAxisSize: MainAxisSize.max,
-//                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              new Padding(
-                                                padding: EdgeInsets.fromLTRB(5, 0, 10, 0),
-                                                child: Center(child:new Text(
-                                                    'Also happens on '+ dayDict[new_data[index]['day'][1]]+', time '+new_data[index]['time'][1] + ' at '+ new_data[index]['venue'][1],
-                                                    style:TextStyle(
-                                                        fontSize: 16,
-                                                        color: Colors.grey
-                                                    ),overflow: TextOverflow.ellipsis,)),
-                                              )
-                                            ]
-                                        )
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: <Widget>[
+                                            Expanded(
+                                              child: Padding(padding: EdgeInsets.all(5),child:Center(child:new Text(
+                                                  'Also happens on '+ dayDict[new_data[index]['day'][1]]+', time '+new_data[index]['time'][1] + ' at '+ new_data[index]['venue'][1],
+                                                  style:TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.grey
+                                                  ))),)
+                                            )
+                                          ]
+                                      )
 
                                       ],
                                     ),
@@ -357,16 +358,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                               new Padding(
                                                 padding: EdgeInsets.fromLTRB(15, 10, 0, 10),
                                                 child:Container(
-                                                  height: 20.0,
-                                                  width: 25.0,
+                                                  height: 25.0,
+                                                  width: 30.0,
                                                   alignment: Alignment.center,
                                                   decoration: BoxDecoration(
                                                     borderRadius: BorderRadius.all(
                                                       Radius.circular(5.0),
                                                     ),
-                                                    color: Colors.lightBlue,
+                                                    color: Colors.green,
                                                   ),
-                                                  child: Text('LEC',style: TextStyle(fontSize: 12,color: Colors.black)),
+                                                  child: Text('LEC',style: TextStyle(fontSize: 14,color: Colors.black)),
                                                 ),
                                               ),
                                               new Container(
@@ -374,7 +375,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   ' '+new_data[index]['module'].replaceAll('*','').replaceAll('#',''),
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 15,
+                                                    fontSize: 16,
                                                   ),
                                                   textAlign: TextAlign.left,
                                                   maxLines: 2,
@@ -456,20 +457,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
                                         ),
                                         new Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: <Widget>[
-                                              Expanded(
-                                                child: Center(child:new Text(
-                                                    'Also happens on '+ dayDict[new_data[index]['day'][0]]+', time '+new_data[index]['time'][0] + ' at '+ new_data[index]['venue'][0],
-                                                    style:TextStyle(
-                                                        fontSize: 16,
-                                                        color: Colors.grey
-                                                    ),overflow: TextOverflow.ellipsis,)),
-                                              )
-                                            ]
-                                        )
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: <Widget>[
+                                            Expanded(
+                                              child: Padding(padding:EdgeInsets.all(5),child:Center(child:new Text(
+                                                  'Also happens on '+ dayDict[new_data[index]['day'][1]]+', time '+new_data[index]['time'][1] + ' at '+ new_data[index]['venue'][1],
+                                                  style:TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.grey
+                                                  ))),)
+                                            )
+                                          ]
+                                      )
                                       ],
                                     ),
                                   ),
@@ -561,35 +562,35 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: const Icon(MyFlutterApp.monday_calendar_page1),
                     onPressed:mondayPressed,
                     iconSize: 40.0,
-                    color: Colors.blue,
+                    // color: Colors.blue,
                   ),
 
                   new IconButton(
                     icon: const Icon(MyFlutterApp.tuesday_daily_calendar_page1),
                     onPressed:tuesdayPressed,
                     iconSize: 40.0,
-                    color: Colors.blue,
+                    // color: Colors.blue,
                   ),
 
                   new IconButton(
                     icon: const Icon(MyFlutterApp.wednesday_calendar_daily_page1),
                     onPressed:wednesdayPressed,
                     iconSize: 40.0,
-                    color: Colors.blue,
+                    // color: Colors.blue,
                   ),
 
                   new IconButton(
                     icon: const Icon(MyFlutterApp.thursday_calendar_daily_page_interface_symbol1),
                     onPressed:thursdayPressed,
                     iconSize: 40.0,
-                    color: Colors.blue,
+                    // color: Colors.blue,
                   ),
 
                   new IconButton(
                     icon: const Icon(MyFlutterApp.friday_daily_calendar_page1),
                     onPressed:fridayPressed,
                     iconSize: 40.0,
-                    color: Colors.blue,
+                    // color: Colors.blue,
                   ),
 
 
